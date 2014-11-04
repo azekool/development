@@ -6,7 +6,6 @@ class ControllerCatalogAttributeGroup extends Controller {
 		$this->load->language('catalog/attribute_group');
 
 		$this->document->setTitle($this->language->get('heading_title'));
-
 		$this->load->model('catalog/attribute_group');
 
 		$this->getList();

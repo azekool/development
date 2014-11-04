@@ -15,11 +15,12 @@ class ControllerCommonMenu extends Controller {
 		$data['text_reports'] = $this->language->get('text_reports');
 		
 		$data['text_customer'] = $this->language->get('text_customer');
-		$data['text_product'] = $this->language->get('text_product');
+		$data['text_card'] = $this->language->get('text_card');
 		$data['order'] = $this->url->link('sale/order', 'token=' . $this->session->data['token'], 'SSL');
 		
 		
 		$data['home'] = $this->url->link('common/dashboard', 'token=' . $this->session->data['token'], 'SSL');
+		$data['card'] = $this->url->link('card/card', 'token=' . $this->session->data['token'], 'SSL');
 		
 		/*
 		$data['text_affiliate'] = $this->language->get('text_affiliate');

@@ -4,7 +4,7 @@
   </li>
   <li id="products"><a class="parent"><i class="fa fa-tags fa-fw"></i> <span><?php echo $text_products; ?></span></a>
   	<ul>
-  	  <li><a href="<?php echo $product; ?>"><?php echo $text_product; ?></a></li>
+  	  <li><a href="<?php echo $card; ?>"><?php echo $text_card; ?></a></li>
   	</ul>
   </li>
   <li id="orders"><a class="parent"><i class="fa fa-shopping-cart fa-fw"></i> <span><?php echo $text_orders; ?></span></a></li>

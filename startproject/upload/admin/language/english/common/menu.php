@@ -1,6 +1,14 @@
 <?php
 // Text
-$_['text_affiliate']                   = 'Affiliates';
+$_['text_customers']                   = 'Customers';
+$_['text_products']                    = 'Products';
+$_['text_sales']	                   = 'Sales';
+$_['text_invoices']                    = 'Invoices';
+$_['text_products']                    = 'Products';
+$_['text_bookings']                    = 'Transactions';
+$_['text_card']		                   = 'Cards';
+
+$_['text_ffiliate']                    = 'Affiliates';
 $_['text_affiliate_activity']          = 'Affiliate Activity';
 $_['text_api']                         = 'API';
 $_['text_attribute']                   = 'Attributes';

@@ -5,22 +5,46 @@ class ControllerCommonMenu extends Controller {
 		$this->load->language('common/menu');
 		
 		//main category
-		
 		$data['text_dashboard'] = $this->language->get('text_dashboard');
+		
+		//Customer
 		$data['text_customers'] = $this->language->get('text_customers');
+		$data['text_customer'] = $this->language->get('text_customer');
+		$data['text_customer_group'] = $this->language->get('text_customer_group');
+		$data['text_customer_field'] = $this->language->get('text_customer_field');
+		$data['text_customer_ban_ip'] = $this->language->get('text_customer_ban_ip');
+		$data['text_custom_field'] = $this->language->get('text_custom_field');
+		
+		//Product
+		$data['text_card'] = $this->language->get('text_card');
+		
 		$data['text_products'] = $this->language->get('text_products');
-		$data['text_orders'] = $this->language->get('text_orders');
+		$data['text_sales'] = $this->language->get('text_sales');
 		$data['text_bookings'] = $this->language->get('text_bookings');
 		$data['text_invoices'] = $this->language->get('text_invoices');
 		$data['text_reports'] = $this->language->get('text_reports');
-		
+		$data['text_setting'] = $this->language->get('text_setting');
+		$data['text_user'] = $this->language->get('text_user');
+		$data['text_user_group'] = $this->language->get('text_user_group');
+		$data['text_users'] = $this->language->get('text_users');
 		$data['text_customer'] = $this->language->get('text_customer');
-		$data['text_card'] = $this->language->get('text_card');
+		
+		$data['text_system'] = $this->language->get('text_system');
+		$data['text_api'] = $this->language->get('text_api');
+		
 		$data['order'] = $this->url->link('sale/order', 'token=' . $this->session->data['token'], 'SSL');
-		
-		
 		$data['home'] = $this->url->link('common/dashboard', 'token=' . $this->session->data['token'], 'SSL');
 		$data['card'] = $this->url->link('card/card', 'token=' . $this->session->data['token'], 'SSL');
+		$data['setting'] = $this->url->link('setting/store', 'token=' . $this->session->data['token'], 'SSL');
+		$data['api'] = $this->url->link('user/api', 'token=' . $this->session->data['token'], 'SSL');
+		$data['user'] = $this->url->link('user/user', 'token=' . $this->session->data['token'], 'SSL');
+		$data['user_group'] = $this->url->link('user/user_permission', 'token=' . $this->session->data['token'], 'SSL');
+		
+		$data['customer'] = $this->url->link('sale/customer', 'token=' . $this->session->data['token'], 'SSL');
+		$data['customer_fields'] = $this->url->link('sale/customer_field', 'token=' . $this->session->data['token'], 'SSL');
+		$data['customer_group'] = $this->url->link('sale/customer_group', 'token=' . $this->session->data['token'], 'SSL');
+		$data['customer_ban_ip'] = $this->url->link('sale/customer_ban_ip', 'token=' . $this->session->data['token'], 'SSL');
+		$data['custom_field'] = $this->url->link('sale/custom_field', 'token=' . $this->session->data['token'], 'SSL');
 		
 		/*
 		$data['text_affiliate'] = $this->language->get('text_affiliate');

@@ -346,35 +346,30 @@ class ModelCardCard extends Model {
 	}
 
 	public function getCards($data = array()) {
-		$sql = "SELECT * FROM " . DB_PREFIX . "card p LEFT JOIN " . DB_PREFIX . "card_description pd ON (p.card_id = pd.card_id) WHERE pd.language_id = '" . (int)$this->config->get('config_language_id') . "'";
+		//$sql = "SELECT * FROM " . DB_PREFIX . "card p LEFT JOIN " . DB_PREFIX . "card_description pd ON (p.card_id = pd.card_id) WHERE pd.language_id = '" . (int)$this->config->get('config_language_id') . "'";
+		  $sql = "SELECT *, 0 as quantity FROM ". DB_PREFIX . "card WHERE card_id > 0 ";
 
 		if (!empty($data['filter_name'])) {
-			$sql .= " AND pd.name LIKE '" . $this->db->escape($data['filter_name']) . "%'";
-		}
-
-		if (!empty($data['filter_model'])) {
-			$sql .= " AND p.model LIKE '" . $this->db->escape($data['filter_model']) . "%'";
+			$sql .= " AND card_name LIKE '" . $this->db->escape($data['filter_name']) . "%'";
 		}
 
 		if (!empty($data['filter_price'])) {
-			$sql .= " AND p.price LIKE '" . $this->db->escape($data['filter_price']) . "%'";
+			$sql .= " AND price LIKE '" . $this->db->escape($data['filter_price']) . "%'";
 		}
 
 		if (isset($data['filter_quantity']) && $data['filter_quantity'] !== null) {
-			$sql .= " AND p.quantity = '" . (int)$data['filter_quantity'] . "'";
+			$sql .= " AND quantity = '" . (int)$data['filter_quantity'] . "'";
 		}
 
 		if (isset($data['filter_status']) && $data['filter_status'] !== null) {
-			$sql .= " AND p.status = '" . (int)$data['filter_status'] . "'";
+			$sql .= " AND status = '" . (int)$data['filter_status'] . "'";
 		}
 
-		$sql .= " GROUP BY p.card_id";
+// 		$sql .= " GROUP BY p.card_id";
 
 		$sort_data = array(
-			'pd.name',
-			'p.model',
-			'p.price',
-			'p.quantity',
+			'card_name',
+			'price',
 			'p.status',
 			'p.sort_order'
 		);
@@ -382,7 +377,7 @@ class ModelCardCard extends Model {
 		if (isset($data['sort']) && in_array($data['sort'], $sort_data)) {
 			$sql .= " ORDER BY " . $data['sort'];
 		} else {
-			$sql .= " ORDER BY pd.name";
+			$sql .= " ORDER BY card_name";
 		}
 
 		if (isset($data['order']) && ($data['order'] == 'DESC')) {
@@ -604,28 +599,26 @@ class ModelCardCard extends Model {
 	}
 
 	public function getTotalCards($data = array()) {
-		$sql = "SELECT COUNT(DISTINCT p.card_id) AS total FROM " . DB_PREFIX . "card p LEFT JOIN " . DB_PREFIX . "card_description pd ON (p.card_id = pd.card_id)";
+// 		$sql = "SELECT COUNT(DISTINCT p.card_id) AS total FROM " . DB_PREFIX . "card p LEFT JOIN " . DB_PREFIX . "card_description pd ON (p.card_id = pd.card_id)";
 
-		$sql .= " WHERE pd.language_id = '" . (int)$this->config->get('config_language_id') . "'";
+// 		$sql .= " WHERE pd.language_id = '" . (int)$this->config->get('config_language_id') . "'";
+
+		$sql = "SELECT COUNT(card_id) AS total FROM ". DB_PREFIX . "card  WHERE card_id>0";
 
 		if (!empty($data['filter_name'])) {
-			$sql .= " AND pd.name LIKE '" . $this->db->escape($data['filter_name']) . "%'";
-		}
-
-		if (!empty($data['filter_model'])) {
-			$sql .= " AND p.model LIKE '" . $this->db->escape($data['filter_model']) . "%'";
+			$sql .= " AND card_name LIKE '" . $this->db->escape($data['filter_name']) . "%'";
 		}
 
 		if (!empty($data['filter_price'])) {
-			$sql .= " AND p.price LIKE '" . $this->db->escape($data['filter_price']) . "%'";
+			$sql .= " AND price LIKE '" . $this->db->escape($data['filter_price']) . "%'";
 		}
 
 		if (isset($data['filter_quantity']) && $data['filter_quantity'] !== null) {
-			$sql .= " AND p.quantity = '" . (int)$data['filter_quantity'] . "'";
+			$sql .= " AND quantity = '" . (int)$data['filter_quantity'] . "'";
 		}
 
 		if (isset($data['filter_status']) && $data['filter_status'] !== null) {
-			$sql .= " AND p.status = '" . (int)$data['filter_status'] . "'";
+			$sql .= " AND status = '" . (int)$data['filter_status'] . "'";
 		}
 
 		$query = $this->db->query($sql);

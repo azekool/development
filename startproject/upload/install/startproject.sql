@@ -15,7 +15,7 @@ SET sql_mode = '';
 --
 
 CREATE TABLE IF NOT EXISTS `oc_card` (
-  `card_id` int(10) unsigned NOT NULL,
+  `card_id` int(10) unsigned  NOT NULL AUTO_INCREMENT,
   `card_name` varchar(64) NOT NULL,
   `price` double(10,2) DEFAULT '0.00',
   `defaultprice` double(18,2) DEFAULT NULL,
@@ -38,7 +38,9 @@ CREATE TABLE IF NOT EXISTS `oc_card` (
   `payphone` varchar(64) DEFAULT NULL,
   `cardtype_id` int(10) DEFAULT NULL,
   `print_id` int(10) DEFAULT NULL,
-  `isvat` tinyint(3) NOT NULL DEFAULT '0'
+  `isvat` tinyint(3) NOT NULL DEFAULT '0',
+  `status` tinyint(1) NOT NULL DEFAULT '0',
+  PRIMARY KEY (`card_id`),
 ) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=100001 ;
 
 

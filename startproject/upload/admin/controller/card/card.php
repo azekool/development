@@ -1,5 +1,5 @@
 <?php
-class ControllerCatalogCard extends Controller {
+class ControllerCardCard extends Controller {
 	private $error = array();
 
 	public function index() {
@@ -325,12 +325,13 @@ class ControllerCatalogCard extends Controller {
 		$results = $this->model_card_card->getCards($filter_data);
 
 		foreach ($results as $result) {
-			if (is_file(DIR_IMAGE . $result['image'])) {
-				$image = $this->model_tool_image->resize($result['image'], 40, 40);
+			if (is_file(DIR_IMAGE . "catalog/cards/".$result['image'])) {
+				$image = $this->model_tool_image->resize("catalog/cards/".$result['image'], 100, 100);
 			} else {
-				$image = $this->model_tool_image->resize('no_image.png', 40, 40);
+				$image = $this->model_tool_image->resize('no_image.png', 100, 100);
 			}
 
+			/*
 			$special = false;
 
 			$card_specials = $this->model_card_card->getCardSpecials($result['card_id']);
@@ -342,13 +343,12 @@ class ControllerCatalogCard extends Controller {
 					break;
 				}
 			}
-
+			*/
 			$data['cards'][] = array(
 				'card_id' => $result['card_id'],
 				'image'      => $image,
-				'name'       => $result['name'],
+				'name'       => $result['card_name'],
 				'price'      => $result['price'],
-				'special'    => $special,
 				'quantity'   => $result['quantity'],
 				'status'     => ($result['status']) ? $this->language->get('text_enabled') : $this->language->get('text_disabled'),
 				'edit'       => $this->url->link('card/card/edit', 'token=' . $this->session->data['token'] . '&card_id=' . $result['card_id'] . $url, 'SSL')
@@ -431,11 +431,11 @@ class ControllerCatalogCard extends Controller {
 			$url .= '&page=' . $this->request->get['page'];
 		}
 
-		$data['sort_name'] = $this->url->link('card/card', 'token=' . $this->session->data['token'] . '&sort=pd.name' . $url, 'SSL');
-		$data['sort_price'] = $this->url->link('card/card', 'token=' . $this->session->data['token'] . '&sort=p.price' . $url, 'SSL');
+		$data['sort_name'] = $this->url->link('card/card', 'token=' . $this->session->data['token'] . '&sort=card_name' . $url, 'SSL');
+		$data['sort_price'] = $this->url->link('card/card', 'token=' . $this->session->data['token'] . '&sort=price' . $url, 'SSL');
 		$data['sort_quantity'] = $this->url->link('card/card', 'token=' . $this->session->data['token'] . '&sort=p.quantity' . $url, 'SSL');
-		$data['sort_status'] = $this->url->link('card/card', 'token=' . $this->session->data['token'] . '&sort=p.status' . $url, 'SSL');
-		$data['sort_order'] = $this->url->link('card/card', 'token=' . $this->session->data['token'] . '&sort=p.sort_order' . $url, 'SSL');
+		$data['sort_status'] = $this->url->link('card/card', 'token=' . $this->session->data['token'] . '&sort=status' . $url, 'SSL');
+		$data['sort_order'] = $this->url->link('card/card', 'token=' . $this->session->data['token'] . '&sort=sort_order' . $url, 'SSL');
 
 		$url = '';
 

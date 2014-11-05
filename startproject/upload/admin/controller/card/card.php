@@ -322,7 +322,7 @@ class ControllerCardCard extends Controller {
 
 		$card_total = $this->model_card_card->getTotalCards($filter_data);
 
-		$results = $this->model_card_card->getCards($filter_data);
+		$results = $this->model_card_card->getCards($filter_data); 
 
 		foreach ($results as $result) {
 			if (is_file(DIR_IMAGE . "catalog/cards/".$result['image'])) {

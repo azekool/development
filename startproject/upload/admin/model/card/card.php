@@ -604,7 +604,7 @@ class ModelCardCard extends Model {
 // 		$sql .= " WHERE pd.language_id = '" . (int)$this->config->get('config_language_id') . "'";
 
 		$sql = "SELECT COUNT(card_id) AS total FROM ". DB_PREFIX . "card  WHERE card_id>0";
-
+ 
 		if (!empty($data['filter_name'])) {
 			$sql .= " AND card_name LIKE '" . $this->db->escape($data['filter_name']) . "%'";
 		}

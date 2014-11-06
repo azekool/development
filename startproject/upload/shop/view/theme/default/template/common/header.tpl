@@ -60,13 +60,12 @@
         </li>
        </ul>
     </div>
-    </div>
   </div>
 </nav>
 <header>
   <div class="container">
     <div class="row">
-      <div class="col-sm-4">
+      <div class="col-sm-10">
         <div id="logo">
           <?php if ($logo) { ?>
           <a href="<?php echo $home; ?>"><img src="<?php echo $logo; ?>" title="<?php echo $name; ?>" alt="<?php echo $name; ?>" class="img-responsive" /></a>
@@ -76,16 +75,17 @@
         </div>
         
       </div>
-      <div class="col-sm-4">
-      </div>
-      <div class="col-sm-3 pull-right">
+      <div class="pull-right">
         <?php if ($logged) { ?>
+        	
         	<a class="btn btn-info " href="<?php echo $logout; ?>"><?php echo $text_logout; ?></a>
+        	<a class="btn btn-info " href="<?php echo $account; ?>"><?php echo $text_account; ?></a>
       		
       	 <?php } else { ?>
       		<a class="btn btn-info" href="<?php echo $login; ?>"><?php echo $text_login; ?></a>
-      	<?php } ?>
       		<a class="btn btn-info" href="<?php echo $register; ?>"><?php echo $text_register; ?></a>
+      	<?php } ?>
+      		
       </div>
     </div>
   </div>

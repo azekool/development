@@ -14,6 +14,7 @@ class ControllerCommonHome extends Controller {
 		$data['content_top'] = $this->load->controller('common/content_top');
 		$data['content_bottom'] = $this->load->controller('common/content_bottom');
 		*/
+		$data['slideshow'] = $this->load->controller('module/slideshow');
 		$data['footer'] = $this->load->controller('common/footer');
 		$data['header'] = $this->load->controller('common/header');
 

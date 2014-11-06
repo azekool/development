@@ -13,24 +13,24 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0">
 
 
-<script type="text/javascript" src="view/javascript/jquery/jquery-2.1.1.min.js"></script>
-<script type="text/javascript" src="view/javascript/bootstrap/js/bootstrap.min.js"></script>
+<script type="text/javascript" src="admin/view/javascript/jquery/jquery-2.1.1.min.js"></script>
+<script type="text/javascript" src="admin/view/javascript/bootstrap/js/bootstrap.min.js"></script>
 <!--
 <link href="view/javascript/bootstrap/css/bootstrap.css" rel="stylesheet" media="screen" />
 //-->
 
 
-<link href="view/javascript/bootstrap/less/bootstrap.less" rel="stylesheet/less" />
-<script src="view/javascript/bootstrap/less-1.7.4.min.js"></script>
+<link href="admin/view/javascript/bootstrap/less/bootstrap.less" rel="stylesheet/less" />
+<script src="admin/view/javascript/bootstrap/less-1.7.4.min.js"></script>
 
-<link href="view/javascript/font-awesome/css/font-awesome.min.css" type="text/css" rel="stylesheet" />
-<link href="view/javascript/summernote/summernote.css" rel="stylesheet">
-<script type="text/javascript" src="view/javascript/summernote/summernote.js"></script>
-<script src="view/javascript/jquery/datetimepicker/moment.min.js" type="text/javascript"></script>
-<script src="view/javascript/jquery/datetimepicker/bootstrap-datetimepicker.min.js" type="text/javascript"></script>
-<link href="view/javascript/jquery/datetimepicker/bootstrap-datetimepicker.min.css" type="text/css" rel="stylesheet" media="screen" />
+<link href="admin/view/javascript/font-awesome/css/font-awesome.min.css" type="text/css" rel="stylesheet" />
+<link href="admin/view/javascript/summernote/summernote.css" rel="stylesheet">
+<script type="text/javascript" src="admin/view/javascript/summernote/summernote.js"></script>
+<script src="admin/view/javascript/jquery/datetimepicker/moment.min.js" type="text/javascript"></script>
+<script src="admin/view/javascript/jquery/datetimepicker/bootstrap-datetimepicker.min.js" type="text/javascript"></script>
+<link href="admin/view/javascript/jquery/datetimepicker/bootstrap-datetimepicker.min.css" type="text/css" rel="stylesheet" media="screen" />
 
-<link type="text/css" href="view/stylesheet/stylesheet.css" rel="stylesheet" media="screen" />
+<link type="text/css" href="admin/view/stylesheet/stylesheet.css" rel="stylesheet" media="screen" />
 
 
 <?php foreach ($styles as $style) { ?>
@@ -39,7 +39,7 @@
 <?php foreach ($links as $link) { ?>
 <link href="<?php echo $link['href']; ?>" rel="<?php echo $link['rel']; ?>" />
 <?php } ?>
-<script src="view/javascript/common.js" type="text/javascript"></script>
+<script src="admin/view/javascript/common.js" type="text/javascript"></script>
 <?php foreach ($scripts as $script) { ?>
 <script type="text/javascript" src="<?php echo $script; ?>"></script>
 <?php } ?>
@@ -51,7 +51,7 @@
     <?php if ($logged) { ?>
     <a type="button" id="button-menu" class="pull-left"><i class="fa fa-indent fa-lg"></i></a>
     <?php } ?>
-    <a href="<?php echo $home; ?>" class="navbar-brand"><img src="view/image/logo.png" alt="<?php echo $heading_title; ?>" title="<?php echo $heading_title; ?>" /></a></div>
+    <a href="<?php echo $account; ?>" class="navbar-brand"><img src="admin/view/image/logo.png" alt="<?php echo $heading_title; ?>" title="<?php echo $heading_title; ?>" /></a></div>
   <?php if ($logged) { ?>
   <ul class="nav pull-right">
     <li class="dropdown"><a class="dropdown-toggle" data-toggle="dropdown"><span class="label label-danger pull-left"><?php echo $alerts; ?></span> <i class="fa fa-bell fa-lg"></i></a>

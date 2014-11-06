@@ -7,9 +7,8 @@ class ControllerAccountAccount extends Controller {
 			$this->response->redirect($this->url->link('account/login', '', 'SSL'));
 		}
 
-		
 		$this->load->language('account/account');
-		
+
 		$this->document->setTitle($this->language->get('heading_title'));
 
 		$data['breadcrumbs'] = array();
@@ -66,13 +65,10 @@ class ControllerAccountAccount extends Controller {
 			$data['reward'] = '';
 		}
 
-		
-		
-		
-		$data['column_left'] = $this->load->controller('account/column_left');
-// 		$data['column_right'] = $this->load->controller('common/column_right');
-// 		$data['content_top'] = $this->load->controller('common/content_top');
-// 		$data['content_bottom'] = $this->load->controller('common/content_bottom');
+		$data['column_left'] = $this->load->controller('common/column_left');
+		$data['column_right'] = $this->load->controller('common/column_right');
+		$data['content_top'] = $this->load->controller('common/content_top');
+		$data['content_bottom'] = $this->load->controller('common/content_bottom');
 		$data['footer'] = $this->load->controller('common/footer');
 		$data['header'] = $this->load->controller('common/header');
 

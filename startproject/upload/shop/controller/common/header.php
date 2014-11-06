@@ -150,10 +150,20 @@ class ControllerCommonHeader extends Controller {
 			$data['class'] = 'common-home';
 		}
 
-		if (file_exists(DIR_TEMPLATE . $this->config->get('config_template') . '/template/common/header.tpl')) {
-			return $this->load->view($this->config->get('config_template') . '/template/common/header.tpl', $data);
-		} else {
-			return $this->load->view('default/template/common/header.tpl', $data);
+		if($this->customer->isLogged()){
+			
+			if (file_exists(DIR_TEMPLATE . $this->config->get('config_template') . '/template/account/header.tpl')) {
+				return $this->load->view($this->config->get('config_template') . '/template/account/header.tpl', $data);
+			} else {
+				return $this->load->view('default/template/common/header.tpl', $data);
+			}	
+		}else{
+			if (file_exists(DIR_TEMPLATE . $this->config->get('config_template') . '/template/common/header.tpl')) {
+				return $this->load->view($this->config->get('config_template') . '/template/common/header.tpl', $data);
+			} else {
+				return $this->load->view('default/template/common/header.tpl', $data);
+			}
 		}
+		
 	}
 }

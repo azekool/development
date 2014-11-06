@@ -157,6 +157,7 @@ class ControllerCommonHeader extends Controller {
 			} else {
 				return $this->load->view('default/template/common/header.tpl', $data);
 			}	
+			$data['alerts'] ="";
 		}else{
 			if (file_exists(DIR_TEMPLATE . $this->config->get('config_template') . '/template/common/header.tpl')) {
 				return $this->load->view($this->config->get('config_template') . '/template/common/header.tpl', $data);

@@ -19,3 +19,6 @@ $_['text_transaction']   = 'Your Transactions';
 $_['text_newsletter']    = 'Subscribe / unsubscribe to newsletter';
 $_['text_recurring']     = 'Recurring payments';
 $_['text_transactions']  = 'Transactions';
+$_['text_dashboard']  	 = 'Dashboard';
+$_['text_reports']  	 = 'Reports';
+$_['text_system']  	 	 = 'System';

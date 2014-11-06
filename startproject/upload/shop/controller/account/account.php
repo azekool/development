@@ -59,7 +59,8 @@ class ControllerAccountAccount extends Controller {
 		$data['transaction'] = $this->url->link('account/transaction', '', 'SSL');
 		$data['newsletter'] = $this->url->link('account/newsletter', '', 'SSL');
 		$data['recurring'] = $this->url->link('account/recurring', '', 'SSL');
-
+		$data['error_warning'] = "";
+		
 		if ($this->config->get('reward_status')) {
 			$data['reward'] = $this->url->link('account/reward', '', 'SSL');
 		} else {

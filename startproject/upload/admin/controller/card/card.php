@@ -326,9 +326,9 @@ class ControllerCardCard extends Controller {
 
 		foreach ($results as $result) {
 			if (is_file(DIR_IMAGE . "catalog/cards/".$result['image'])) {
-				$image = $this->model_tool_image->resize("catalog/cards/".$result['image'], 100, 100);
+				$image = $this->model_tool_image->resize("catalog/cards/".$result['image'], 150, 100);
 			} else {
-				$image = $this->model_tool_image->resize('no_image.png', 100, 100);
+				$image = $this->model_tool_image->resize('no_image.png', 150, 100);
 			}
 
 			/*

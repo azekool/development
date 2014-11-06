@@ -40,7 +40,7 @@ CREATE TABLE IF NOT EXISTS `oc_card` (
   `print_id` int(10) DEFAULT NULL,
   `isvat` tinyint(3) NOT NULL DEFAULT '0',
   `status` tinyint(1) NOT NULL DEFAULT '0',
-  PRIMARY KEY (`card_id`),
+  PRIMARY KEY (`card_id`)
 ) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=100001 ;
 
 

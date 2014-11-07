@@ -653,30 +653,28 @@ border-color: #dfebd5;
 	margin-bottom: 0;
 }
 
-
+@media (min-width: 768px) {
 .card {
-  display: block;
-  padding: 4px;
-  margin-bottom: 20px;
-  line-height: 1.42857143;
-  background-color: #fff;
-  border: 1px solid #ddd;
-  border-radius: 4px;
-  -webkit-transition: all .2s ease-in-out;
-       -o-transition: all .2s ease-in-out;
-          transition: all .2s ease-in-out;
+	min-width : 185px;
+	padding: 15px;
+	border: 1px solid #dddddd;
+
+  }
 }
-.card > img,
-.card a > img {
-  margin-right: auto;
-  margin-left: auto;
+@media (min-width: 768px) {
+	 .card label{
+	 	width :100%;
+	 }
 }
-a.card:hover,
-a.card:focus,
-a.card.active {
-  border-color: #428bca;
-}
-.card .caption {
-  padding: 9px;
-  color: #333;
-}
+ .card label{
+ 	color: #1978ab;
+ 	padding-top:3px;
+ } 
+ .card:hover{
+	border: 1px solid #1978ab;
+	background-color:#e3e3e3;
+
+  }
+  .cards > tbody > tr > td{
+  	border-top:none;
+  }

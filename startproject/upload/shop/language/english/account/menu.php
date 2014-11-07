@@ -7,3 +7,7 @@ $_['text_invoices']                    = 'Invoices';
 $_['text_products']                    = 'Products';
 $_['text_bookings']                    = 'Transactions';
 $_['text_card']		                   = 'Cards';
+$_['text_transactions']  = 'Transactions';
+$_['text_dashboard']  	 = 'Dashboard';
+$_['text_reports']  	 = 'Reports';
+$_['text_system']  	 	 = 'System';

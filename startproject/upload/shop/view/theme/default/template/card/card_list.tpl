@@ -34,25 +34,30 @@
           </div>
           </div>
           <div class="row">
-       	  <?php if ($cards) { ?>
-            <?php foreach (array_chunk($cards, 4) as $card) { ?>
-				
+           <?php if ($cards) { ?>
+          <div class="table-responsive">
+            <table class="table cards">
+             <?php foreach (array_chunk($cards, 5) as $card) { ?>
+				<tr>
 		        <?php foreach ($card as $card) { ?>
-		        	
-		       		 <div class="col-sm-2 text-center">
-		       		 <div class="thumbnail">
+		        	<td>
+		       		 <div class="text-center">
+		       		 <div class="card">
 		       		
 		          		 <a href="<?php echo $card['href']; ?>" class="thumbnail1"><img src="<?php echo $card['image']; ?>" alt="<?php echo $card['name']; ?>" title="<?php echo $card['name']; ?>" /></a>
 		         		 <label>
 		         			 <!--   <input type="checkbox" name="path[]" value="<?php echo $image['path']; ?>" /> -->
 		            		<?php echo $card['name']. '  ' .$card['price']; ?></label>
+		            		<button type="button" onclick="cart.add('<?php echo $card['card_id']; ?>');"><i class="fa fa-shopping-cart"></i> <span class="hidden-xs hidden-sm hidden-md"><?php echo 'kaufen'; ?></span></button>
 		         		</div> 
 		             </div>
-		     
+		     </td>
 		    <?php }?>
-		    
+		    </tr>
 		  <?php }?>
-		    <?php }?>
+            </table>
+          </div>
+           <?php }?>
 		</div>
         <div class="row">
           <div class="col-sm-6 text-left"><?php echo $pagination; ?></div>

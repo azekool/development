@@ -2,7 +2,7 @@
 class ModelCardCard extends Model {
 
 	public function getCard($card_id) {
-		$query = $this->db->query("SELECT DISTINCT *, (SELECT keyword FROM " . DB_PREFIX . "url_alias WHERE query = 'card_id=" . (int)$card_id . "') AS keyword FROM " . DB_PREFIX . "card p LEFT JOIN " . DB_PREFIX . "card_description pd ON (p.card_id = pd.card_id) WHERE p.card_id = '" . (int)$card_id . "' AND pd.language_id = '" . (int)$this->config->get('config_language_id') . "'");
+		$query = $this->db->query("SELECT *, 5 as quantity FROM " . DB_PREFIX . "card  WHERE card_id = '" . (int)$card_id . "'");
 
 		return $query->row;
 	}

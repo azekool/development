@@ -34,7 +34,7 @@ class ControllerAccountAccount extends Controller {
 
 		$data['heading_title'] = $this->language->get('heading_title');
 
-		$data['text_my_account'] = $this->language->get('text_my_account');
+		$data['text_account'] = $this->language->get('text_account');
 		$data['text_my_orders'] = $this->language->get('text_my_orders');
 		$data['text_my_newsletter'] = $this->language->get('text_my_newsletter');
 		$data['text_edit'] = $this->language->get('text_edit');

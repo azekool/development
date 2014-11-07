@@ -526,9 +526,9 @@ class ControllerSettingSetting extends Controller {
 			$data['config_comment'] = $this->config->get('config_comment');
 		}
 
-		$this->load->model('localisation/location');
+		//$this->load->model('localisation/location');
 
-		$data['locations'] = $this->model_localisation_location->getLocations();
+		//$data['locations'] = $this->model_localisation_location->getLocations();
 
 		if (isset($this->request->post['config_location'])) {
 			$data['config_location'] = $this->request->post['config_location'];
@@ -556,6 +556,7 @@ class ControllerSettingSetting extends Controller {
 			$data['config_meta_keyword'] = $this->config->get('config_meta_keyword');
 		}
 
+		/*
 		if (isset($this->request->post['config_layout_id'])) {
 			$data['config_layout_id'] = $this->request->post['config_layout_id'];
 		} else {
@@ -565,7 +566,7 @@ class ControllerSettingSetting extends Controller {
 		$this->load->model('design/layout');
 
 		$data['layouts'] = $this->model_design_layout->getLayouts();
-
+		*/
 		if (isset($this->request->post['config_template'])) {
 			$data['config_template'] = $this->request->post['config_template'];
 		} else {
@@ -628,11 +629,13 @@ class ControllerSettingSetting extends Controller {
 
 		$data['currencies'] = $this->model_localisation_currency->getCurrencies();
 
+		/*
 		if (isset($this->request->post['config_length_class_id'])) {
 			$data['config_length_class_id'] = $this->request->post['config_length_class_id'];
 		} else {
 			$data['config_length_class_id'] = $this->config->get('config_length_class_id');
 		}
+		
 
 		$this->load->model('localisation/length_class');
 
@@ -646,7 +649,8 @@ class ControllerSettingSetting extends Controller {
 
 		$this->load->model('localisation/weight_class');
 
-		$data['weight_classes'] = $this->model_localisation_weight_class->getWeightClasses();
+		$data['weight_classes'] = $this->model_localisation_weight_class->getWeightClasses();	
+		*/
 
 		if (isset($this->request->post['config_product_limit'])) {
 			$data['config_product_limit'] = $this->request->post['config_product_limit'];
@@ -802,6 +806,7 @@ class ControllerSettingSetting extends Controller {
 			$data['config_invoice_prefix'] = 'INV-' . date('Y') . '-00';
 		}
 
+		/*
 		if (isset($this->request->post['config_order_status_id'])) {
 			$data['config_order_status_id'] = $this->request->post['config_order_status_id'];
 		} else {
@@ -827,13 +832,13 @@ class ControllerSettingSetting extends Controller {
 		$this->load->model('localisation/order_status');
 
 		$data['order_statuses'] = $this->model_localisation_order_status->getOrderStatuses();
-
+		*/
 		if (isset($this->request->post['config_order_mail'])) {
 			$data['config_order_mail'] = $this->request->post['config_order_mail'];
 		} else {
 			$data['config_order_mail'] = $this->config->get('config_order_mail');
 		}
-
+       
 		if (isset($this->request->post['config_stock_display'])) {
 			$data['config_stock_display'] = $this->request->post['config_stock_display'];
 		} else {
@@ -895,7 +900,7 @@ class ControllerSettingSetting extends Controller {
 		} else {
 			$data['config_return_id'] = $this->config->get('config_return_id');
 		}
-
+		/*
 		if (isset($this->request->post['config_return_status_id'])) {
 			$data['config_return_status_id'] = $this->request->post['config_return_status_id'];
 		} else {
@@ -905,7 +910,7 @@ class ControllerSettingSetting extends Controller {
 		$this->load->model('localisation/return_status');
 
 		$data['return_statuses'] = $this->model_localisation_return_status->getReturnStatuses();
-
+		*/
 		if (isset($this->request->post['config_logo'])) {
 			$data['config_logo'] = $this->request->post['config_logo'];
 		} else {
@@ -1293,6 +1298,7 @@ class ControllerSettingSetting extends Controller {
 		if (!$this->request->post['config_voucher_max']) {
 			$this->error['voucher_max'] = $this->language->get('error_voucher_max');
 		}
+		/*
 
 		if (!isset($this->request->post['config_processing_status'])) {
 			$this->error['processing_status'] = $this->language->get('error_processing_status');
@@ -1301,7 +1307,7 @@ class ControllerSettingSetting extends Controller {
 		if (!isset($this->request->post['config_complete_status'])) {
 			$this->error['complete_status'] = $this->language->get('error_complete_status');
 		}
-
+		*/
 		if (!$this->request->post['config_image_category_width'] || !$this->request->post['config_image_category_height']) {
 			$this->error['image_category'] = $this->language->get('error_image_category');
 		}

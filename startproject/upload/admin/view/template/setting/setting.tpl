@@ -118,6 +118,7 @@
                   <textarea name="config_comment" rows="5" placeholder="<?php echo $entry_comment; ?>" id="input-comment" class="form-control"><?php echo $config_comment; ?></textarea>
                 </div>
               </div>
+              <!-- 
               <?php if ($locations) { ?>
               <div class="form-group">
                 <label class="col-sm-2 control-label"><span data-toggle="tooltip" data-container="#tab-general" title="<?php echo $help_location; ?>"><?php echo $entry_location; ?></span></label>
@@ -138,6 +139,7 @@
                 </div>
               </div>
               <?php } ?>
+               -->
             </div>
             <div class="tab-pane" id="tab-store">
               <div class="form-group required">
@@ -176,6 +178,7 @@
                   <br />
                   <img src="" alt="" id="template" class="img-thumbnail" /></div>
               </div>
+              <!-- 
               <div class="form-group">
                 <label class="col-sm-2 control-label" for="input-layout"><?php echo $entry_layout; ?></label>
                 <div class="col-sm-10">
@@ -190,6 +193,7 @@
                   </select>
                 </div>
               </div>
+               -->
             </div>
             <div class="tab-pane" id="tab-local">
               <div class="form-group">
@@ -278,6 +282,7 @@
                   </label>
                 </div>
               </div>
+              <!-- 
               <div class="form-group">
                 <label class="col-sm-2 control-label" for="input-length-class"><?php echo $entry_length_class; ?></label>
                 <div class="col-sm-10">
@@ -306,6 +311,7 @@
                   </select>
                 </div>
               </div>
+               -->
             </div>
             <div class="tab-pane" id="tab-option">
               <fieldset>
@@ -722,6 +728,7 @@
                     </select>
                   </div>
                 </div>
+                <!-- 
                 <div class="form-group">
                   <label class="col-sm-2 control-label" for="input-order-status"><span data-toggle="tooltip" title="<?php echo $help_order_status; ?>"><?php echo $entry_order_status; ?></span></label>
                   <div class="col-sm-10">
@@ -782,6 +789,7 @@
                     <?php } ?>
                   </div>
                 </div>
+                 -->
                 <div class="form-group">
                   <label class="col-sm-2 control-label"><span data-toggle="tooltip" title="<?php echo $help_order_mail; ?>"><?php echo $entry_order_mail; ?></span></label>
                   <div class="col-sm-10">
@@ -988,6 +996,7 @@
                     </select>
                   </div>
                 </div>
+                <!-- 
                 <div class="form-group">
                   <label class="col-sm-2 control-label" for="input-return-status"><span data-toggle="tooltip" title="<?php echo $help_return_status; ?>"><?php echo $entry_return_status; ?></span></label>
                   <div class="col-sm-10">
@@ -1001,7 +1010,9 @@
                       <?php } ?>
                     </select>
                   </div>
+                  
                 </div>
+                -->
               </fieldset>
             </div>
             <div class="tab-pane" id="tab-image">

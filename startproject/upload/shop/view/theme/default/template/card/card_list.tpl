@@ -45,7 +45,7 @@
 		          		 <a href="<?php echo $card['href']; ?>" class="thumbnail1"><img src="<?php echo $card['image']; ?>" alt="<?php echo $card['name']; ?>" title="<?php echo $card['name']; ?>" /></a>
 		         		 <label>
 		         			 <!--   <input type="checkbox" name="path[]" value="<?php echo $image['path']; ?>" /> -->
-		            		<?php echo $card['name']. ' <br> ' .$card['price']; ?></label>
+		            		<?php echo $card['name']. '  ' .$card['price']; ?></label>
 		         		</div> 
 		             </div>
 		     

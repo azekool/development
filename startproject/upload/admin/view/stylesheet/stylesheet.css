@@ -652,3 +652,31 @@ border-color: #dfebd5;
 	height: 3px;
 	margin-bottom: 0;
 }
+
+
+.card {
+  display: block;
+  padding: 4px;
+  margin-bottom: 20px;
+  line-height: 1.42857143;
+  background-color: #fff;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  -webkit-transition: all .2s ease-in-out;
+       -o-transition: all .2s ease-in-out;
+          transition: all .2s ease-in-out;
+}
+.card > img,
+.card a > img {
+  margin-right: auto;
+  margin-left: auto;
+}
+a.card:hover,
+a.card:focus,
+a.card.active {
+  border-color: #428bca;
+}
+.card .caption {
+  padding: 9px;
+  color: #333;
+}

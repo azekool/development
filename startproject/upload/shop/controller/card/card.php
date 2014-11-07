@@ -71,8 +71,8 @@ class ControllerCardCard extends Controller {
 			'filter_name'	  => $filter_name,
 			'sort'            => $sort,
 			'order'           => $order,
-			'start'           => ($page - 1) * $this->config->get('config_limit_admin'),
-			'limit'           => $this->config->get('config_limit_admin')
+			'start'           => ($page - 1) * $this->config->get('config_product_limit'),
+			'limit'           => $this->config->get('config_product_limit')
 		);
 
 		$this->load->model('tool/image');
@@ -83,19 +83,24 @@ class ControllerCardCard extends Controller {
 
 		foreach ($results as $result) {
 			if (is_file(DIR_IMAGE . "catalog/cards/".$result['image'])) {
-				$image = $this->model_tool_image->resize("catalog/cards/".$result['image'], 150, 150);
+				$image = $this->model_tool_image->resize("catalog/cards/".$result['image'], 150, 100);
 			} else {
-				$image = $this->model_tool_image->resize('no_image.png', 150, 150);
+				$image = $this->model_tool_image->resize('no_image.png', 150, 100);
 			}
-
+			
+			$href ="";
+			if($result['quantity'] >= 0){
+				$href = $this->url->link('cart/cart', '', 'SSL');
+			}
+			
 			$data['cards'][] = array(
-				'card_id' => $result['card_id'],
+				'card_id' 	 => $result['card_id'],
 				'image'      => $image,
 				'name'       => $result['card_name'],
 				'price'      => $this->currency->format($result['price']),
 				'quantity'   => $result['quantity'],
 				'status'     => ($result['status']) ? $this->language->get('text_enabled') : $this->language->get('text_disabled'),
-				'edit'       => $this->url->link('card/card/edit', 'token=' . $this->session->data['token'] . '&card_id=' . $result['card_id'] . $url, 'SSL')
+				'href'		 => $href	
 			);
 		}
 
@@ -142,12 +147,12 @@ class ControllerCardCard extends Controller {
 		$pagination = new Pagination();
 		$pagination->total = $card_total;
 		$pagination->page = $page;
-		$pagination->limit = $this->config->get('config_limit_admin');
+		$pagination->limit = $this->config->get('config_product_limit');
 		$pagination->url = $this->url->link('card/card',  $url . '&page={page}', 'SSL');
 
 		$data['pagination'] = $pagination->render();
 
-		$data['results'] = sprintf($this->language->get('text_pagination'), ($card_total) ? (($page - 1) * $this->config->get('config_limit_admin')) + 1 : 0, ((($page - 1) * $this->config->get('config_limit_admin')) > ($card_total - $this->config->get('config_limit_admin'))) ? $card_total : ((($page - 1) * $this->config->get('config_limit_admin')) + $this->config->get('config_limit_admin')), $card_total, ceil($card_total / $this->config->get('config_limit_admin')));
+		$data['results'] = sprintf($this->language->get('text_pagination'), ($card_total) ? (($page - 1) * $this->config->get('config_product_limit')) + 1 : 0, ((($page - 1) * $this->config->get('config_limit_admin')) > ($card_total - $this->config->get('config_limit_admin'))) ? $card_total : ((($page - 1) * $this->config->get('config_limit_admin')) + $this->config->get('config_limit_admin')), $card_total, ceil($card_total / $this->config->get('config_limit_admin')));
 
 		$data['filter_name'] = $filter_name;
 		

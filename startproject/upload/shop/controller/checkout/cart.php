@@ -4,7 +4,7 @@ class ControllerCheckoutCart extends Controller {
 		$this->load->language('checkout/cart');
 
 		$this->document->setTitle($this->language->get('heading_title'));
-
+		/*
 		$data['breadcrumbs'] = array();
 
 		$data['breadcrumbs'][] = array(
@@ -16,13 +16,13 @@ class ControllerCheckoutCart extends Controller {
 			'href' => $this->url->link('checkout/cart'),
 			'text' => $this->language->get('heading_title')
 		);
-
-		if ($this->cart->hasProducts() || !empty($this->session->data['vouchers'])) {
+		*/
+		if ($this->cart->hasCards() /*|| !empty($this->session->data['vouchers'])*/) {
 			$data['heading_title'] = $this->language->get('heading_title');
 
-			$data['text_recurring'] = $this->language->get('text_recurring');
-			$data['text_length'] = $this->language->get('text_length');
-			$data['text_recurring_item'] = $this->language->get('text_recurring_item');
+			//$data['text_recurring'] = $this->language->get('text_recurring');
+			//$data['text_length'] = $this->language->get('text_length');
+			//$data['text_recurring_item'] = $this->language->get('text_recurring_item');
 			$data['text_next'] = $this->language->get('text_next');
 			$data['text_next_choice'] = $this->language->get('text_next_choice');
 
@@ -64,18 +64,18 @@ class ControllerCheckoutCart extends Controller {
 
 			$data['action'] = $this->url->link('checkout/cart/edit');
 
-			if ($this->config->get('config_cart_weight')) {
-				$data['weight'] = $this->weight->format($this->cart->getWeight(), $this->config->get('config_weight_class_id'), $this->language->get('decimal_point'), $this->language->get('thousand_point'));
-			} else {
-				$data['weight'] = '';
-			}
+			//if ($this->config->get('config_cart_weight')) {
+			//	$data['weight'] = $this->weight->format($this->cart->getWeight(), $this->config->get('config_weight_class_id'), $this->language->get('decimal_point'), $this->language->get('thousand_point'));
+			//} else {
+			//	$data['weight'] = '';
+			//}
 
 			$this->load->model('tool/image');
-			$this->load->model('tool/upload');
+			//$this->load->model('tool/upload');
 
 			$data['cards'] = array();
 
-			$cards = $this->cart->getProducts();
+			$cards = $this->cart->getCards();
 
 			foreach ($cards as $card) {
 				$card_total = 0;
@@ -85,17 +85,22 @@ class ControllerCheckoutCart extends Controller {
 						$card_total += $card_2['quantity'];
 					}
 				}
+				
+				/**
+				 * @TODO daily limit check
+				 *       customer credit check
+				 */
 
-				if ($card['minimum'] > $card_total) {
-					$data['error_warning'] = sprintf($this->language->get('error_minimum'), $card['name'], $card['minimum']);
-				}
+				//if ($card['minimum'] > $card_total) {
+				//	$data['error_warning'] = sprintf($this->language->get('error_minimum'), $card['name'], $card['minimum']);
+				//}
 
 				if ($card['image']) {
-					$image = $this->model_tool_image->resize($card['image'], $this->config->get('config_image_cart_width'), $this->config->get('config_image_cart_height'));
+					$image = $this->model_tool_image->resize("catalog/cards/".$card['image'], $this->config->get('config_image_cart_width'), $this->config->get('config_image_cart_height'));
 				} else {
 					$image = '';
 				}
-
+				/*				
 				$option_data = array();
 
 				foreach ($card['option'] as $option) {
@@ -116,21 +121,22 @@ class ControllerCheckoutCart extends Controller {
 						'value' => (utf8_strlen($value) > 20 ? utf8_substr($value, 0, 20) . '..' : $value)
 					);
 				}
-
+				*/
+				
 				// Display prices
 				if (($this->config->get('config_customer_price') && $this->customer->isLogged()) || !$this->config->get('config_customer_price')) {
-					$price = $this->currency->format($this->tax->calculate($card['price'], $card['tax_class_id'], $this->config->get('config_tax')));
+					$price = $this->currency->format($card['price']/*$this->tax->calculate($card['price'], $card['tax_class_id'], $this->config->get('config_tax'))*/);
 				} else {
 					$price = false;
 				}
 
 				// Display prices
 				if (($this->config->get('config_customer_price') && $this->customer->isLogged()) || !$this->config->get('config_customer_price')) {
-					$total = $this->currency->format($this->tax->calculate($card['price'], $card['tax_class_id'], $this->config->get('config_tax')) * $card['quantity']);
+					$total = $this->currency->format($card['price']* $card['quantity']/*$this->tax->calculate($card['price'], $card['tax_class_id'], $this->config->get('config_tax')) * $card['quantity']*/);
 				} else {
 					$total = false;
 				}
-
+				/*
 				$recurring = '';
 
 				if ($card['recurring']) {
@@ -152,17 +158,17 @@ class ControllerCheckoutCart extends Controller {
 						$recurring .= sprintf($this->language->get('text_payment_until_canceled_description'), $this->currency->format($this->tax->calculate($card['recurring']['price'] * $card['quantity'], $card['tax_class_id'], $this->config->get('config_tax'))), $card['recurring']['cycle'], $frequencies[$card['recurring']['frequency']], $card['recurring']['duration']);
 					}
 				}
-
+				*/
 				$data['cards'][] = array(
 					'key'       => $card['key'],
 					'thumb'     => $image,
 					'name'      => $card['name'],
-					'model'     => $card['model'],
-					'option'    => $option_data,
-					'recurring' => $recurring,
+					//'model'     => $card['model'],
+					//'option'    => $option_data,
+					//'recurring' => $recurring,
 					'quantity'  => $card['quantity'],
 					'stock'     => $card['stock'] ? true : !(!$this->config->get('config_stock_checkout') || $this->config->get('config_stock_warning')),
-					'reward'    => ($card['reward'] ? sprintf($this->language->get('text_points'), $card['reward']) : ''),
+					//'reward'    => ($card['reward'] ? sprintf($this->language->get('text_points'), $card['reward']) : ''),
 					'price'     => $price,
 					'total'     => $total,
 					'href'      => $this->url->link('card/card', 'card_id=' . $card['card_id'])
@@ -170,7 +176,7 @@ class ControllerCheckoutCart extends Controller {
 			}
 
 			// Gift Voucher
-			$data['vouchers'] = array();
+			/*$data['vouchers'] = array();
 
 			if (!empty($this->session->data['vouchers'])) {
 				foreach ($this->session->data['vouchers'] as $key => $voucher) {
@@ -182,18 +188,20 @@ class ControllerCheckoutCart extends Controller {
 					);
 				}
 			}
-
+			*/
+			
 			// Totals
-			$this->load->model('extension/extension');
+			//$this->load->model('extension/extension');
 
 			$total_data = array();
 			$total = 0;
-			$taxes = $this->cart->getTaxes();
+			$taxes = array();//$this->cart->getTaxes();
 
 			// Display prices
+			
 			if (($this->config->get('config_customer_price') && $this->customer->isLogged()) || !$this->config->get('config_customer_price')) {
 				$sort_order = array();
-
+				/*
 				$results = $this->model_extension_extension->getExtensions('total');
 
 				foreach ($results as $key => $value) {
@@ -209,7 +217,16 @@ class ControllerCheckoutCart extends Controller {
 						$this->{'model_total_' . $result['code']}->getTotal($total_data, $total, $taxes);
 					}
 				}
-
+				*/
+				$this->load->model('total/sub_total');
+				$this->model_total_sub_total->getTotal($total_data, $total, $taxes);
+					
+				$this->load->model('total/provision');
+				$this->model_total_provision->getTotal($total_data, $total, $taxes);
+					
+				$this->load->model('total/total');
+				$this->model_total_total->getTotal($total_data, $total, $taxes);
+				
 				$sort_order = array();
 
 				foreach ($total_data as $key => $value) {
@@ -228,23 +245,23 @@ class ControllerCheckoutCart extends Controller {
 				);
 			}
 
-			$data['continue'] = $this->url->link('common/home');
+			$data['continue'] = $this->url->link('card/card');
 
 			$data['checkout'] = $this->url->link('checkout/checkout', '', 'SSL');
 
-			$this->load->model('extension/extension');
+			//$this->load->model('extension/extension');
 
 			$data['checkout_buttons'] = array();
 
-			$data['coupon'] = $this->load->controller('checkout/coupon');
-			$data['voucher'] = $this->load->controller('checkout/voucher');
-			$data['reward'] = $this->load->controller('checkout/reward');
-			$data['shipping'] = $this->load->controller('checkout/shipping');
-			$data['column_left'] = $this->load->controller('common/column_left');
-			$data['column_right'] = $this->load->controller('common/column_right');
-			$data['content_top'] = $this->load->controller('common/content_top');
-			$data['content_bottom'] = $this->load->controller('common/content_bottom');
-			$data['footer'] = $this->load->controller('common/footer');
+			//$data['coupon'] = $this->load->controller('checkout/coupon');
+			//$data['voucher'] = $this->load->controller('checkout/voucher');
+			//$data['reward'] = $this->load->controller('checkout/reward');
+			//$data['shipping'] = $this->load->controller('checkout/shipping');
+			$data['column_left'] = $this->load->controller('account/column_left');
+			//$data['column_right'] = $this->load->controller('common/column_right');
+			//$data['content_top'] = $this->load->controller('common/content_top');
+			//$data['content_bottom'] = $this->load-	>controller('common/content_bottom');
+			//$data['footer'] = $this->load->controller('common/footer');
 			$data['header'] = $this->load->controller('common/header');
 
 			if (file_exists(DIR_TEMPLATE . $this->config->get('config_template') . '/template/checkout/cart.tpl')) {
@@ -259,15 +276,15 @@ class ControllerCheckoutCart extends Controller {
 
 			$data['button_continue'] = $this->language->get('button_continue');
 
-			$data['continue'] = $this->url->link('common/home');
+			$data['continue'] = $this->url->link('account/account');
 
 			unset($this->session->data['success']);
 
-			$data['column_left'] = $this->load->controller('common/column_left');
-			$data['column_right'] = $this->load->controller('common/column_right');
-			$data['content_top'] = $this->load->controller('common/content_top');
-			$data['content_bottom'] = $this->load->controller('common/content_bottom');
-			$data['footer'] = $this->load->controller('common/footer');
+			$data['column_left'] = $this->load->controller('account/column_left');
+			//$data['column_right'] = $this->load->controller('common/column_right');
+			//$data['content_top'] = $this->load->controller('common/content_top');
+			//$data['content_bottom'] = $this->load->controller('common/content_bottom');
+			//$data['footer'] = $this->load->controller('common/footer');
 			$data['header'] = $this->load->controller('common/header');
 
 			if (file_exists(DIR_TEMPLATE . $this->config->get('config_template') . '/template/error/not_found.tpl')) {
@@ -356,9 +373,10 @@ class ControllerCheckoutCart extends Controller {
 					array_multisort($sort_order, SORT_ASC, $total_data);
 				}
 
-				$json['total'] = sprintf($this->language->get('text_items'), $this->cart->countCards() , $this->currency->format($total));
+				//$json['total'] = sprintf($this->language->get('text_items'), $this->cart->countCards() , $this->currency->format($total));
+				$json['redirect'] = $this->url->link('checkout/cart', '', 'SSL');
 			} else {
-				$json['redirect'] = str_replace('&amp;', '&', $this->url->link('card/card', 'card_id=' . $this->request->post['card_id']));
+				$json['redirect'] = str_replace('&amp;', '&', $this->url->link('checkout/cart', 'card_id=' . $this->request->post['card_id']));
 			}
 		}
 

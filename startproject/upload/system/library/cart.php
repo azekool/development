@@ -47,11 +47,11 @@ class Cart {
 						}
 					}
 
-					$card_discount_query = $this->db->query("SELECT price FROM " . DB_PREFIX . "card_discount WHERE card_id = '" . (int)$card_id . "' AND customer_group_id = '" . (int)$this->config->get('config_customer_group_id') . "' AND quantity <= '" . (int)$discount_quantity . "' AND ((date_start = '0000-00-00' OR date_start < NOW()) AND (date_end = '0000-00-00' OR date_end > NOW())) ORDER BY quantity DESC, priority ASC, price ASC LIMIT 1");
+					//$card_discount_query = $this->db->query("SELECT price FROM " . DB_PREFIX . "card_discount WHERE card_id = '" . (int)$card_id . "' AND customer_group_id = '" . (int)$this->config->get('config_customer_group_id') . "' AND quantity <= '" . (int)$discount_quantity . "' AND ((date_start = '0000-00-00' OR date_start < NOW()) AND (date_end = '0000-00-00' OR date_end > NOW())) ORDER BY quantity DESC, priority ASC, price ASC LIMIT 1");
 
-					if ($card_discount_query->num_rows) {
-						$price = $card_discount_query->row['price'];
-					}
+					//if ($card_discount_query->num_rows) {
+					//	$price = $card_discount_query->row['price'];
+					//}
 
 					// Stock
 					if (!$card_query->row['quantity'] || ($card_query->row['quantity'] < $quantity)) {
@@ -61,7 +61,7 @@ class Cart {
 					$this->data[$key] = array(
 						'key'             => $key,
 						'card_id'      => $card_query->row['card_id'],
-						'name'            => $card_query->row['name'],
+						'name'            => $card_query->row['card_name'],
 						'image'           => $card_query->row['image'],
 						'quantity'        => $quantity,
 						'stock'           => $stock,

@@ -90,7 +90,7 @@ class ControllerCardCard extends Controller {
 			
 			$href ="";
 			if($result['quantity'] >= 0){
-				$href = $this->url->link('cart/cart', '', 'SSL');
+				$href = $this->url->link('checkout/cart', '', 'SSL');
 			}
 			
 			$data['cards'][] = array(

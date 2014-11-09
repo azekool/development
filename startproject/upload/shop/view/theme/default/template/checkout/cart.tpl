@@ -26,6 +26,7 @@
 	
 	      <div class="panel-body">
 	          <div class="row">
+	          	<div class="col-sm-9">
 			      <form action="<?php echo $action; ?>" method="post" enctype="multipart/form-data">
 			        <div class="table-responsive">
 			          <table class="table table-bordered">
@@ -61,9 +62,10 @@
 			          </table>
 			        </div>
 			      </form>
+			     </div>
 			</div>
 			<div class="row">
-		        <div class="col-sm-4 col-sm-offset-8">
+		        <div class="col-sm-4 col-sm-offset-5">
 		          <table class="table table-bordered">
 		            <?php foreach ($totals as $total) { ?>
 		            <tr>
@@ -73,10 +75,10 @@
 		            <?php } ?>
 		          </table>
 		        </div>
-		      </div>
+		     </div>
 	        <div class="row">
 	
-		      <div class="buttons">
+		      <div class="buttons col-sm-4 col-sm-offset-5">
 		        <div class="pull-left"><a href="<?php echo $continue; ?>" class="btn btn-default"><?php echo $button_shopping; ?></a></div>
 		        <div class="pull-right"><a href="<?php echo $checkout; ?>" class="btn btn-primary"><?php echo $button_checkout; ?></a></div>
 		      </div>
@@ -84,4 +86,4 @@
 	      </div>
 	    </div>
 	  </div>
-	  </div>
+</div>

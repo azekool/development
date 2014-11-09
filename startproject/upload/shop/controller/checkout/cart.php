@@ -276,7 +276,7 @@ class ControllerCheckoutCart extends Controller {
 
 			$data['button_continue'] = $this->language->get('button_continue');
 
-			$data['continue'] = $this->url->link('account/account');
+			$data['continue'] = $this->url->link('card/card');
 
 			unset($this->session->data['success']);
 
@@ -394,13 +394,13 @@ class ControllerCheckoutCart extends Controller {
 			foreach ($this->request->post['quantity'] as $key => $value) {
 				$this->cart->update($key, $value);
 			}
-
+/*
 			unset($this->session->data['shipping_method']);
 			unset($this->session->data['shipping_methods']);
 			unset($this->session->data['payment_method']);
 			unset($this->session->data['payment_methods']);
 			unset($this->session->data['reward']);
-
+*/
 			$this->response->redirect($this->url->link('checkout/cart'));
 		}
 
@@ -417,53 +417,48 @@ class ControllerCheckoutCart extends Controller {
 		if (isset($this->request->post['key'])) {
 			$this->cart->remove($this->request->post['key']);
 
-			unset($this->session->data['vouchers'][$this->request->post['key']]);
+			//unset($this->session->data['vouchers'][$this->request->post['key']]);
 
 			$this->session->data['success'] = $this->language->get('text_remove');
-
+			/*
 			unset($this->session->data['shipping_method']);
 			unset($this->session->data['shipping_methods']);
 			unset($this->session->data['payment_method']);
 			unset($this->session->data['payment_methods']);
 			unset($this->session->data['reward']);
-
+			*/
 			// Totals
-			$this->load->model('extension/extension');
+			//$this->load->model('extension/extension');
 
 			$total_data = array();
 			$total = 0;
-			$taxes = $this->cart->getTaxes();
+			//$taxes = $this->cart->getTaxes();
 
 			// Display prices
 			if (($this->config->get('config_customer_price') && $this->customer->isLogged()) || !$this->config->get('config_customer_price')) {
 				$sort_order = array();
 
-				$results = $this->model_extension_extension->getExtensions('total');
+				//$results = $this->model_extension_extension->getExtensions('total');
 
-				foreach ($results as $key => $value) {
-					$sort_order[$key] = $this->config->get($value['code'] . '_sort_order');
-				}
+					$this->load->model('total/sub_total');
+					$this->model_total_sub_total->getTotal($total_data, $total, $taxes);
+					
+					$this->load->model('total/provision');
+					$this->model_total_provision->getTotal($total_data, $total, $taxes);
+					
+					$this->load->model('total/total');
+					$this->model_total_total->getTotal($total_data, $total, $taxes);
+					
+					$sort_order = array();
 
-				array_multisort($sort_order, SORT_ASC, $results);
-
-				foreach ($results as $result) {
-					if ($this->config->get($result['code'] . '_status')) {
-						$this->load->model('total/' . $result['code']);
-
-						$this->{'model_total_' . $result['code']}->getTotal($total_data, $total, $taxes);
+					foreach ($total_data as $key => $value) {
+						$sort_order[$key] = $value['sort_order'];
 					}
-				}
 
-				$sort_order = array();
-
-				foreach ($total_data as $key => $value) {
-					$sort_order[$key] = $value['sort_order'];
-				}
-
-				array_multisort($sort_order, SORT_ASC, $total_data);
+					array_multisort($sort_order, SORT_ASC, $total_data);
 			}
 
-			$json['total'] = sprintf($this->language->get('text_items'), $this->cart->countProducts() + (isset($this->session->data['vouchers']) ? count($this->session->data['vouchers']) : 0), $this->currency->format($total));
+			$json['total'] = sprintf($this->language->get('text_items'), $this->cart->countCards() /*+ (isset($this->session->data['vouchers']) ? count($this->session->data['vouchers']) : 0)*/, $this->currency->format($total));
 		}
 
 		$this->response->addHeader('Content-Type: application/json');

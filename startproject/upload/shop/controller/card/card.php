@@ -113,7 +113,27 @@ class ControllerCardCard extends Controller {
 		$data['entry_name'] = $this->language->get('entry_name');
 		
 		$data['button_filter'] = $this->language->get('button_filter');
-
+		
+		if (isset($this->session->data['success'])) {
+			$data['success'] = $this->session->data['success'];
+		
+			unset($this->session->data['success']);
+		} else {
+			$data['success'] = '';
+		}
+		if (isset($this->session->data['error'])) {
+			$data['error_warning'] = $this->session->data['error'];
+		
+			unset($this->session->data['error']);
+		} else {
+			$data['error_warning'] = '';
+		}
+		if ($this->config->get('config_customer_price') && !$this->customer->isLogged()) {
+			$data['attention'] = sprintf($this->language->get('text_login'), $this->url->link('account/login'), $this->url->link('account/register'));
+		} else {
+			$data['attention'] = '';
+		}
+		
 		$url = '';
 
 		if (isset($this->request->get['filter_name'])) {

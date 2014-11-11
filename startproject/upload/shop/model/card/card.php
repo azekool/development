@@ -9,7 +9,7 @@ class ModelCardCard extends Model {
 
 	public function getCards($data = array()) {
 		//$sql = "SELECT * FROM " . DB_PREFIX . "card p LEFT JOIN " . DB_PREFIX . "card_description pd ON (p.card_id = pd.card_id) WHERE pd.language_id = '" . (int)$this->config->get('config_language_id') . "'";
-		  $sql = "SELECT *, 0 as quantity FROM ". DB_PREFIX . "card WHERE card_id > 0 ";
+		  $sql = "SELECT *, 0 as quantity FROM ". DB_PREFIX . "card WHERE status = 1 ";
 
 		if (!empty($data['filter_name'])) {
 			$sql .= " AND card_name LIKE '" . $this->db->escape($data['filter_name']) . "%'";

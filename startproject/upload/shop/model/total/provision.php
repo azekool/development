@@ -8,6 +8,7 @@ class ModelTotalProvision extends Model {
 			$provision_sum = 0;
 
 			foreach ($this->cart->getProducts() as $product) {
+				
 				$percentage = $this->customer->getProvision($product['product_id'],$this->customer->getId());
 
 				if($percentage > 0) {

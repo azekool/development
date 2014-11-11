@@ -164,4 +164,18 @@ class Customer {
 
 		return $query->row['total'];
 	}
+	
+	public function getProvision($card_id){
+		$provision = 0;
+		/**
+		 * @TODO Provision
+		 
+		$provision_query = $this->db->query("SELECT provision FROM " . DB_PREFIX . "customer_card_provision WHERE card_id = '" . (int)$card_id . "'  AND customer_id= '" . (int)$this->getId() . "'");
+			
+		if ($provision_query->num_rows) {
+			$provision = $provision_query->row['provision'];
+		}
+		*/
+		return $provision;
+	}
 }

@@ -28,14 +28,22 @@ class Cart {
 				$card_query = $this->db->query("SELECT * FROM " . DB_PREFIX . "card WHERE card_id = '" . (int)$card_id . "'  AND status = '1'");
 
 				if ($card_query->num_rows) {
-					$option_price = 0;
-					$option_points = 0;
-					$option_weight = 0;
+					//$option_price = 0;
+					//$option_points = 0;
+					//$option_weight = 0;
 
-					$option_data = array();
+					//$option_data = array();
 
 					$price = $card_query->row['price'];
-
+					
+					//Customer provision					
+					$provision = 0;
+					$percentage = $this->customer->getProvision($card_id);
+					
+					if($percentage > 0) {
+						$provision =($price * $percentage / 100);
+					}
+					
 					// Card Discounts
 					$discount_quantity = 0;
 
@@ -57,6 +65,8 @@ class Cart {
 					if (!$card_query->row['quantity'] || ($card_query->row['quantity'] < $quantity)) {
 						$stock = false;
 					}
+					
+					
 
 					$this->data[$key] = array(
 						'key'             => $key,
@@ -66,6 +76,8 @@ class Cart {
 						'quantity'        => $quantity,
 						'stock'           => $stock,
 						'price'           => $price,
+						'provision'		  => $provision,
+						'percentage'	  => $percentage,		
 						'total'           => ($price) * $quantity,
 						/*'tax_class_id'    => $card_query->row['tax_class_id'],*/
 					);
@@ -151,7 +163,11 @@ class Cart {
 		$total = 0;
 
 		foreach ($this->getCards() as $card) {
-			$total += $this->tax->calculate($card['price'], $card['tax_class_id'], $this->config->get('config_tax')) * $card['quantity'];
+			//$total += $this->tax->calculate($card['price'], $card['tax_class_id'], $this->config->get('config_tax')) * $card['quantity'];
+			$total += ($card['price'] - $card['provision']) * $card['quantity'];
+			/**
+			 * @TODO provision should be discarded from total
+			 */
 		}
 
 		return $total;

@@ -393,6 +393,153 @@ INSERT INTO `oc_currency` (`currency_id`, `title`, `code`, `symbol_left`, `symbo
 -- --------------------------------------------------------
 
 --
+-- Tabellenstruktur für Tabelle `oc_purchase`
+--
+
+
+CREATE TABLE IF NOT EXISTS `oc_purchase` (
+  `purchase_id` int(11) DEFAULT NULL,
+  `card_id` int(11) NOT NULL,
+  `supplier_id` int(11) NOT NULL,
+  `price` decimal(5,2) NOT NULL,
+  `ip_address` int(10) NOT NULL,
+  `user_id` int(11) NOT NULL,
+  `comment` text NOT NULL,
+  `expiry_date` date NOT NULL,
+  `filename` int(11) NOT NULL,
+  `count` int(11) NOT NULL,
+  `status` int(11) NOT NULL,
+  `format` varchar(255) NOT NULL,
+  `date_added` datetime NOT NULL
+)ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=400000 ;
+
+--
+-- Tabellenstruktur für Tabelle `oc_pin_bank`
+--
+
+CREATE TABLE IF NOT EXISTS `oc_pin_bank` (
+  `pin_id` int(10) NOT NULL AUTO_INCREMENT,
+  `card_id` int(6) unsigned DEFAULT NULL,
+  `purchase_id` int(6) unsigned DEFAULT NULL,
+  `purchase_price` decimal(15,4) NOT NULL DEFAULT '0.0000',
+  `percentage` decimal(15,4) NOT NULL,
+  `serial_no` varchar(64) DEFAULT NULL,
+  `pin_no` varchar(64) DEFAULT NULL,
+  `date_added` datetime NOT NULL,
+  `date_modified` datetime NOT NULL,
+  `status` tinyint(3) unsigned DEFAULT '0',
+  `expiry_date` datetime DEFAULT NULL,
+  `supplier_id` int(10) DEFAULT NULL,
+  `orderid` int(10) DEFAULT NULL,
+  `user_id` int(10) DEFAULT NULL,
+  PRIMARY KEY (`pin_id`),
+  KEY `card_id` (`card_id`),
+  KEY `serial_no` (`serial_no`),
+  KEY `date_added` (`date_added`),
+  KEY `pin_no` (`pin_no`)
+) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=1000 ;
+
+--
+-- Tabellenstruktur für Tabelle `oc_pin`
+--
+
+CREATE TABLE IF NOT EXISTS `oc_pin` (
+  `pin_id` int(10) NOT NULL AUTO_INCREMENT,
+  `card_id` int(6) unsigned DEFAULT NULL,
+  `purchase_id` int(6) unsigned DEFAULT NULL,
+  `purchase_price` decimal(15,4) NOT NULL DEFAULT '0.0000',
+  `serial_no` varchar(64) DEFAULT NULL,
+  `pin_no` varchar(64) DEFAULT NULL,
+  `date_added` datetime NOT NULL,
+  `date_modified` datetime NOT NULL,
+  `status` tinyint(3) unsigned DEFAULT '0',
+  `expirydate` datetime DEFAULT NULL,
+  `supplier_id` int(10) DEFAULT NULL,
+  `order_id` int(10) DEFAULT NULL,
+  `customer_id` int(10) DEFAULT NULL,
+  `user_id` int(10) DEFAULT NULL,
+  PRIMARY KEY (`pin_id`),
+  KEY `card_id` (`card_id`),
+  KEY `serial_no` (`serial_no`),
+  KEY `date_added` (`date_added`),
+  KEY `pin_no` (`pin_no`)
+) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=1000 ;
+
+
+--
+-- Table structure for table `oc_supplier`
+--
+CREATE TABLE IF NOT EXISTS `oc_supplier` (
+  `supplier_id` int(11) NOT NULL AUTO_INCREMENT,
+  `finaccount_id` int(11) NOT NULL,
+  `name` varchar(255) COLLATE utf8_bin NOT NULL DEFAULT '',
+  `email` varchar(96) COLLATE utf8_bin NOT NULL DEFAULT '',
+  `telephone` varchar(32) COLLATE utf8_bin NOT NULL DEFAULT '',
+  `address` text COLLATE utf8_bin NOT NULL,
+  `status` tinyint(1) NOT NULL,
+  `date_added` datetime NOT NULL DEFAULT '0000-00-00 00:00:00',
+  PRIMARY KEY (`supplier_id`)
+) ENGINE=MyISAM  DEFAULT CHARSET=utf8 COLLATE=utf8_bin AUTO_INCREMENT=700000 ;
+
+
+--
+-- Table structure for table `oc_order`
+--
+
+CREATE TABLE IF NOT EXISTS `oc_order` (
+  `order_id` int(11) NOT NULL AUTO_INCREMENT,
+  `invoice_no` int(11) NOT NULL DEFAULT '0',
+  `invoice_prefix` varchar(26) NOT NULL,
+  `store_url` varchar(255) NOT NULL,
+  `customer_id` int(11) NOT NULL DEFAULT '0',
+  `customer_group_id` int(11) NOT NULL DEFAULT '0',
+  `firstname` varchar(32) NOT NULL,
+  `lastname` varchar(32) NOT NULL,
+  `email` varchar(96) NOT NULL,
+  `telephone` varchar(32) NOT NULL,
+  `fax` varchar(32) NOT NULL,
+  `address_1` varchar(128) NOT NULL,
+  `address_2` varchar(128) NOT NULL,
+  `city` varchar(128) NOT NULL,
+  `postcode` varchar(10) NOT NULL,
+  `country` varchar(128) NOT NULL,
+  `comment` text NOT NULL,
+  `total` decimal(15,4) NOT NULL DEFAULT '0.0000',
+  `old_balance` decimal(15,4) NOT NULL DEFAULT '0.0000',
+  `new_balance` decimal(15,4) NOT NULL DEFAULT '0.0000',
+  `order_status_id` int(11) NOT NULL DEFAULT '0',
+  `provision` decimal(15,4) NOT NULL,
+  `ip` varchar(40) NOT NULL,
+  `forwarded_ip` varchar(40) NOT NULL,
+  `user_agent` varchar(255) NOT NULL,
+  `accept_language` varchar(255) NOT NULL,
+  `date_added` datetime NOT NULL,
+  `date_modified` datetime NOT NULL,
+  PRIMARY KEY (`order_id`)
+) ENGINE=MyISAM DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `oc_order_card`
+--
+
+CREATE TABLE IF NOT EXISTS `oc_order_card` (
+  `order_card_id` int(11) NOT NULL AUTO_INCREMENT,
+  `order_id` int(11) NOT NULL,
+  `card_id` int(11) NOT NULL,
+  `name` varchar(255) NOT NULL,
+  `quantity` int(4) NOT NULL,
+  `purchaseprice` decimal(15,4) NOT NULL DEFAULT '0.0000',
+  `price` decimal(15,4) NOT NULL DEFAULT '0.0000',
+  `total` decimal(15,4) NOT NULL DEFAULT '0.0000',
+  `provision` decimal(15,4) NOT NULL DEFAULT '0.0000',
+    
+  PRIMARY KEY (`order_card_id`)
+) ENGINE=MyISAM DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
+
+-- --------------------------------------------------------
+--
 -- Table structure for table `oc_customer`
 --
 

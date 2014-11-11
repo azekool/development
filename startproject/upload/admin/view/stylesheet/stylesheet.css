@@ -668,7 +668,7 @@ border-color: #dfebd5;
 }
  .card label{
  	color: #1978ab;
- 	padding-top:3px;
+ 	padding-top:5px;
  } 
  .card:hover{
 	border: 1px solid #1978ab;
@@ -678,3 +678,12 @@ border-color: #dfebd5;
   .cards > tbody > tr > td{
   	border-top:none;
   }
+  
+  .cards .clickable :hover{
+  	cursor: pointer;
+  }
+  
+
+  
+  
+  

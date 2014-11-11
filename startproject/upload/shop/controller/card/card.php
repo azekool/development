@@ -172,7 +172,7 @@ class ControllerCardCard extends Controller {
 
 		$data['pagination'] = $pagination->render();
 
-		$data['results'] = sprintf($this->language->get('text_pagination'), ($card_total) ? (($page - 1) * $this->config->get('config_product_limit')) + 1 : 0, ((($page - 1) * $this->config->get('config_limit_admin')) > ($card_total - $this->config->get('config_limit_admin'))) ? $card_total : ((($page - 1) * $this->config->get('config_limit_admin')) + $this->config->get('config_limit_admin')), $card_total, ceil($card_total / $this->config->get('config_limit_admin')));
+		$data['results'] = sprintf($this->language->get('text_pagination'), ($card_total) ? (($page - 1) * $this->config->get('config_product_limit')) + 1 : 0, ((($page - 1) * $this->config->get('config_product_limit')) > ($card_total - $this->config->get('config_product_limit'))) ? $card_total : ((($page - 1) * $this->config->get('config_product_limit')) + $this->config->get('config_product_limit')), $card_total, ceil($card_total / $this->config->get('config_product_limit')));
 
 		$data['filter_name'] = $filter_name;
 		

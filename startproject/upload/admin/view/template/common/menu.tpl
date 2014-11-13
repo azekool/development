@@ -15,7 +15,11 @@
   	</ul>
   </li>
   <li id="orders"><a class="parent"><i class="fa fa-shopping-cart fa-fw"></i> <span><?php echo $text_sales; ?></span></a></li>
-  <li id="bookings"><a class="parent"><i class="fa fa-dashboard fa-fw"></i> <span><?php echo $text_bookings; ?></span></a></li>
+  <li id="bookings"><a class="parent"><i class="fa fa-dashboard fa-fw"></i> <span><?php echo $text_bookings; ?></span></a>
+  		<ul>
+          <li><a href="<?php echo $transaction; ?>"><?php echo $text_bookings; ?></a></li>
+        </ul>
+  </li>
   <li id="invoices"><a class="parent"><i class="fa fa-dashboard fa-fw"></i> <span><?php echo $text_invoices; ?></span></a></li>
   <li id="reports"><a  class="parent"><i class="fa fa-dashboard fa-fw"></i> <span><?php echo $text_reports; ?></span></a></li>
   <li id="system"><a class="parent"><i class="fa fa-cog fa-fw"></i> <span><?php echo $text_system; ?></span></a>

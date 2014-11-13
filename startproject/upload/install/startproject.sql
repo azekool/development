@@ -786,6 +786,63 @@ CREATE TABLE IF NOT EXISTS `oc_custom_field_value_description` (
 -- --------------------------------------------------------
 
 
+-- --------------------------------------------------------
+
+--
+-- Tabellenstruktur für Tabelle `oc_payment`
+--
+
+CREATE TABLE IF NOT EXISTS `oc_payment` (
+  `payment_id` int(10) unsigned NOT NULL AUTO_INCREMENT,
+  `customer_id` int(10) unsigned DEFAULT NULL,
+  `reseller_id` int(6) DEFAULT NULL,
+  `amount` decimal(15,4) NOT NULL DEFAULT '0.0000',
+  `date_added` datetime DEFAULT NULL,
+  `comment` varchar(64) DEFAULT NULL,
+  `status` tinyint(3) unsigned DEFAULT '0',
+  `payment_type` varchar(32) DEFAULT NULL,
+  `supplier_id` int(10) DEFAULT NULL,
+  `user_id` int(10) NOT NULL,
+  `bank_id` int(6) DEFAULT NULL,
+  `previous_balance` decimal(15,4) NOT NULL DEFAULT '0.0000',
+  PRIMARY KEY (`payment_id`),
+  KEY `payment_date_idx` (`date_added`)
+) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=10114 ;
+
+
+-- --------------------------------------------------------
+
+--
+-- Tabellenstruktur für Tabelle `oc_transaction`
+--
+
+CREATE TABLE IF NOT EXISTS `oc_transaction` (
+  `transaction_id` int(10) unsigned NOT NULL AUTO_INCREMENT,
+  `customer_id` int(10) unsigned DEFAULT NULL,
+  `amount` decimal(15,4) NOT NULL DEFAULT '0.0000',
+  `reseller_id` int(6) unsigned DEFAULT NULL,
+  `transaction_type_id` int(10) unsigned NOT NULL,
+  `status` tinyint(3) unsigned DEFAULT '0',
+  `comment` varchar(256) DEFAULT NULL,
+  `user_id` int(10) NOT NULL,
+  `supplier_id` int(10) DEFAULT NULL,
+  `date_added` datetime DEFAULT NULL,
+  `previous_balance` decimal(15,4) NOT NULL DEFAULT '0.0000',  
+  PRIMARY KEY (`transaction_id`)
+) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=45 ;
+
+
+
+CREATE TABLE IF NOT EXISTS `oc_transaction_type` (
+  `transaction_type_id` int(10) unsigned NOT NULL AUTO_INCREMENT,
+  `type_name` varchar(32) DEFAULT NULL,
+  `transaction_type` varchar(32) DEFAULT NULL,
+  `comment` varchar(256) DEFAULT NULL,
+  PRIMARY KEY (`transaction_type_id`)
+) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=45 ;
+
+
+
 --
 -- Table structure for table `oc_event`
 --

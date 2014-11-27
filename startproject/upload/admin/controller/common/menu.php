@@ -46,9 +46,9 @@ class ControllerCommonMenu extends Controller {
 		$data['customer_group'] = $this->url->link('sale/customer_group', 'token=' . $this->session->data['token'], 'SSL');
 		$data['customer_ban_ip'] = $this->url->link('sale/customer_ban_ip', 'token=' . $this->session->data['token'], 'SSL');
 		$data['custom_field'] = $this->url->link('sale/custom_field', 'token=' . $this->session->data['token'], 'SSL');
+		$data['transaction'] = $this->url->link('transaction/transaction', 'token=' . $this->session->data['token'], 'SSL');
 		$data['information'] = $this->url->link('catalog/information', 'token=' . $this->session->data['token'], 'SSL');
-		
-		/*
+			/*
 		$data['text_affiliate'] = $this->language->get('text_affiliate');
 		$data['text_affiliate_activity'] = $this->language->get('text_affiliate_activity');
 		$data['text_api'] = $this->language->get('text_api');

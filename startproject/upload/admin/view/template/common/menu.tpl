@@ -1,6 +1,6 @@
 <ul id="menu">
   <li id="dashboard"><a href="<?php echo $home; ?>"><i class="fa fa-dashboard fa-fw"></i> <span><?php echo $text_dashboard; ?></span></a></li>
-  <li id="customers"><a class="parent"><i class="fa fa-puzzle-piece fa-fw"></i> <span><?php echo $text_customers; ?></span></a>
+  <li id="customers"><a class="parent"><i class="fa fa-users fa-fw"></i> <span><?php echo $text_customers; ?></span></a>
     <ul>
 	          <li><a href="<?php echo $customer; ?>"><?php echo $text_customer; ?></a></li>
 	          <li><a href="<?php echo $customer_group; ?>"><?php echo $text_customer_group; ?></a></li>
@@ -9,15 +9,15 @@
 	        
 	 </ul>
   </li>
-  <li id="products"><a class="parent"><i class="fa fa-tags fa-fw"></i> <span><?php echo $text_products; ?></span></a>
+  <li id="products"><a class="parent"><i class="fa fa-list fa-fw"></i> <span><?php echo $text_products; ?></span></a>
   	<ul>
   	  <li><a href="<?php echo $card; ?>"><?php echo $text_card; ?></a></li>
   	</ul>
   </li>
   <li id="orders"><a class="parent"><i class="fa fa-shopping-cart fa-fw"></i> <span><?php echo $text_sales; ?></span></a></li>
-  <li id="bookings"><a class="parent"><i class="fa fa-dashboard fa-fw"></i> <span><?php echo $text_bookings; ?></span></a></li>
-  <li id="invoices"><a class="parent"><i class="fa fa-dashboard fa-fw"></i> <span><?php echo $text_invoices; ?></span></a></li>
-  <li id="reports"><a  class="parent"><i class="fa fa-dashboard fa-fw"></i> <span><?php echo $text_reports; ?></span></a></li>
+  <li id="bookings"><a class="parent"><i class="fa fa-money fa-fw"></i> <span><?php echo $text_bookings; ?></span></a></li>
+  <li id="invoices"><a class="parent"><i class="fa fa-file-text-o fa-fw"></i> <span><?php echo $text_invoices; ?></span></a></li>
+  <li id="reports"><a  class="parent"><i class="fa fa-bar-chart fa-fw"></i> <span><?php echo $text_reports; ?></span></a></li>
   <li id="system"><a class="parent"><i class="fa fa-cog fa-fw"></i> <span><?php echo $text_system; ?></span></a>
     <ul>
       <li><a href="<?php echo $setting; ?>"><?php echo $text_setting; ?></a></li>
@@ -29,6 +29,7 @@
 	        </ul>
 	        
       </li>
+       <li><a href="<?php echo $information; ?>"><?php echo $text_information; ?></a></li>
    	</ul>
    </li>	
   <!--  

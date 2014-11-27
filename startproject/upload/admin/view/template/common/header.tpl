@@ -45,8 +45,13 @@
 <?php } ?>
 </head>
 <body>
+<div class="page-top-header">
+<a href="<?php echo $home; ?>" class=""><div style="margin-left:10px;"></div><img src="view/image/logo_casado.png" alt="<?php echo $heading_title; ?>" title="<?php echo $heading_title; ?>" /><img src="view/image/banner-moblink.gif" alt="<?php echo $heading_title; ?>" title="<?php echo $heading_title; ?>" /></a>
+</div>
 <div id="container">
+
 <header id="header" class="navbar navbar-static-top">
+
   <div class="navbar-header">
     <?php if ($logged) { ?>
     <a type="button" id="button-menu" class="pull-left"><i class="fa fa-indent fa-lg"></i></a>
@@ -90,3 +95,4 @@
   </ul>
   <?php } ?>
 </header>
+

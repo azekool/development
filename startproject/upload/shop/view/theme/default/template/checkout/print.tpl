@@ -91,7 +91,7 @@
 																	</tr>
 																	<tr>
 																		<td height="3"><img
-																			src="image/catalog/cards//black.gif" width="100%"
+																			src="image/catalog/cards/black.gif" width="100%"
 																			height="3"></td>
 																	</tr>
 																	<tr align="center">

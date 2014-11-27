@@ -17,6 +17,7 @@ class ControllerAccountMenu extends Controller {
 		$data['text_invoices'] = $this->language->get('text_invoices');
 		$data['text_reports'] = $this->language->get('text_reports');
 		$data['text_system'] = $this->language->get('text_system');
+		$data['text_setting'] = $this->language->get('text_setting');
 		
 		
 		$data['account'] =  $this->url->link('account/account', '', 'SSL');

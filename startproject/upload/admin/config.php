@@ -1,11 +1,11 @@
 <?php
 // HTTP
-define('HTTP_SERVER', 'http://localhost/git/development/startproject/upload/admin/');
-define('HTTP_CATALOG', 'http://localhost/git/development/startproject/upload/');
+define('HTTP_SERVER', 'http://localhost:81/git/development/startproject/upload/admin/');
+define('HTTP_CATALOG', 'http://localhost:81/git/development/startproject/upload/');
 
 // HTTPS
-define('HTTPS_SERVER', 'http://localhost/git/development/startproject/upload/admin/');
-define('HTTPS_CATALOG', 'http://localhost/git/development/startproject/upload/');
+define('HTTPS_SERVER', 'http://localhost:81/git/development/startproject/upload/admin/');
+define('HTTPS_CATALOG', 'http://localhost:81/git/development/startproject/upload/');
 
 // DIR
 define('DIR_APPLICATION', 'C:/xampp/htdocs/git/development/startproject/upload/admin/');

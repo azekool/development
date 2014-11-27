@@ -46,6 +46,9 @@
 <?php } ?>
 </head>
 <body>
+<div class="page-top-header">
+<a href="<?php echo $home; ?>" class=""><div style="margin-left:10px;"></div><img src="admin/view/image/logo_casado.png" alt="<?php echo $heading_title; ?>" title="<?php echo $heading_title; ?>" /><img src="admin/view/image/banner-moblink.gif" alt="<?php echo $heading_title; ?>" title="<?php echo $heading_title; ?>" /></a>
+</div>
 <div id="container">
 <header id="header" class="navbar navbar-static-top">
   <div class="navbar-header">

@@ -21,6 +21,7 @@ class ControllerCommonMaintenance extends Controller {
 				return new Action('common/maintenance/info');
 			}
 		}
+		
 	}
 
 	public function info() {

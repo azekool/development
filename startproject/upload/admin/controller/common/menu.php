@@ -28,6 +28,7 @@ class ControllerCommonMenu extends Controller {
 		$data['text_user_group'] = $this->language->get('text_user_group');
 		$data['text_users'] = $this->language->get('text_users');
 		$data['text_customer'] = $this->language->get('text_customer');
+		$data['text_information'] = $this->language->get('text_information');
 		
 		$data['text_system'] = $this->language->get('text_system');
 		$data['text_api'] = $this->language->get('text_api');
@@ -45,6 +46,7 @@ class ControllerCommonMenu extends Controller {
 		$data['customer_group'] = $this->url->link('sale/customer_group', 'token=' . $this->session->data['token'], 'SSL');
 		$data['customer_ban_ip'] = $this->url->link('sale/customer_ban_ip', 'token=' . $this->session->data['token'], 'SSL');
 		$data['custom_field'] = $this->url->link('sale/custom_field', 'token=' . $this->session->data['token'], 'SSL');
+		$data['information'] = $this->url->link('catalog/information', 'token=' . $this->session->data['token'], 'SSL');
 		
 		/*
 		$data['text_affiliate'] = $this->language->get('text_affiliate');

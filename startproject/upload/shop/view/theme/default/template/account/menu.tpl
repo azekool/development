@@ -1,16 +1,11 @@
 <ul id="menu">
   <li id="dashboard"><a href="<?php echo $account; ?>"><i class="fa fa-dashboard fa-fw"></i> <span><?php echo $text_dashboard; ?></span></a></li>
-  <li id="dashboard"><a href="<?php echo $card; ?>"><i class="fa fa-dashboard fa-fw"></i> <span><?php echo $text_card; ?></span></a></li>
+  <li id="cards"><a href="<?php echo $card; ?>"><i class="fa fa-list fa-fw"></i> <span><?php echo $text_card; ?></span></a></li>
   <li id="orders"><a class="parent"><i class="fa fa-shopping-cart fa-fw"></i> <span><?php echo $text_sales; ?></span></a></li>
-  <li id="bookings"><a class="parent"><i class="fa fa-dashboard fa-fw"></i> <span><?php echo $text_bookings; ?></span></a></li>
-  <li id="invoices"><a class="parent"><i class="fa fa-dashboard fa-fw"></i> <span><?php echo $text_invoices; ?></span></a></li>
-  <li id="reports"><a  class="parent"><i class="fa fa-dashboard fa-fw"></i> <span><?php echo $text_reports; ?></span></a></li>
-  <li id="system"><a class="parent"><i class="fa fa-cog fa-fw"></i> <span><?php echo $text_system; ?></span></a>
-    <ul>
-      <li><a href="<?php echo $setting; ?>"><?php echo $text_setting; ?></a></li>
-       
-   	</ul>
-   </li>	
+  <li id="bookings"><a class="parent"><i class="fa fa-money fa-fw"></i> <span><?php echo $text_bookings; ?></span></a></li>
+  <li id="invoices"><a class="parent"><i class="fa fa-file-text-o fa-fw"></i> <span><?php echo $text_invoices; ?></span></a></li>
+  <li id="reports"><a  class="parent"><i class="fa fa-bar-chart fa-fw"></i> <span><?php echo $text_reports; ?></span></a></li>
+  <li id="system"><a href="<?php echo $setting; ?>"><i class="fa fa-cog fa-fw"></i><span><?php echo $text_setting; ?></a> </span></a></li>	
   <!--  
   <li id="catalog"><a class="parent"><i class="fa fa-tags fa-fw"></i> <span><?php echo $text_catalog; ?></span></a>
     <ul>

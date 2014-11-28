@@ -29,6 +29,8 @@ class ControllerCommonMenu extends Controller {
 		$data['text_users'] = $this->language->get('text_users');
 		$data['text_customer'] = $this->language->get('text_customer');
 		$data['text_information'] = $this->language->get('text_information');
+		$data['text_language'] = $this->language->get('text_language');
+		$data['language'] = $this->url->link('localisation/language', 'token=' . $this->session->data['token'], 'SSL');
 		
 		$data['text_system'] = $this->language->get('text_system');
 		$data['text_api'] = $this->language->get('text_api');

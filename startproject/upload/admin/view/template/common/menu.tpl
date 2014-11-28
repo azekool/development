@@ -34,6 +34,7 @@
 	        
       </li>
        <li><a href="<?php echo $information; ?>"><?php echo $text_information; ?></a></li>
+       <li><a href="<?php echo $language; ?>"><?php echo $text_language; ?></a></li>
    	</ul>
    </li>	
   <!--  

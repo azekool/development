@@ -122,6 +122,24 @@ class ControllerTransactionTransaction extends Controller {
 		} else {
 			$order = 'ASC';
 		}
+		
+		if (isset($this->request->get['filter_customer'])) {
+			$filter_customer = $this->request->get['filter_customer'];
+		} else {
+			$filter_customer = null;
+		}
+		
+		if (isset($this->request->get['filter_date_start'])) {
+			$filter_date_start = $this->request->get['filter_date_start'];
+		} else {
+			$filter_date_start = '';
+		}
+		
+		if (isset($this->request->get['filter_date_end'])) {
+			$filter_date_end = $this->request->get['filter_date_end'];
+		} else {
+			$filter_date_end = '';
+		}
 
 		if (isset($this->request->get['page'])) {
 			$page = $this->request->get['page'];
@@ -138,7 +156,19 @@ class ControllerTransactionTransaction extends Controller {
 		if (isset($this->request->get['order'])) {
 			$url .= '&order=' . $this->request->get['order'];
 		}
-
+		
+		if (isset($this->request->get['filter_customer'])) {
+			$url .= '&filter_customer=' . urlencode($this->request->get['filter_customer']);
+		}
+		
+		if (isset($this->request->get['filter_date_start'])) {
+			$url .= '&filter_date_start=' . $this->request->get['filter_date_start'];
+		}
+		
+		if (isset($this->request->get['filter_date_end'])) {
+			$url .= '&filter_date_end=' . $this->request->get['filter_date_end'];
+		}
+		
 		if (isset($this->request->get['page'])) {
 			$url .= '&page=' . $this->request->get['page'];
 		}
@@ -164,6 +194,9 @@ class ControllerTransactionTransaction extends Controller {
 			'sort'  => $sort,
 			'order' => $order,
 			'start' => ($page - 1) * $this->config->get('config_limit_admin'),
+			'filter_customer'   => $filter_customer,
+			'filter_date_start'	=> $filter_date_start,
+			'filter_date_end'	=> $filter_date_end,
 			'limit' => $this->config->get('config_limit_admin')
 		);
 
@@ -203,6 +236,10 @@ class ControllerTransactionTransaction extends Controller {
 		$data['button_edit'] = $this->language->get('button_edit');
 		$data['button_delete'] = $this->language->get('button_delete');
 		$data['button_filter'] = $this->language->get('button_filter');
+		
+		$data['entry_date_start'] = $this->language->get('entry_date_start');
+		$data['entry_date_end'] = $this->language->get('entry_date_end');
+		$data['entry_customer'] = $this->language->get('entry_customer');
 		
 		if (isset($this->error['warning'])) {
 			$data['error_warning'] = $this->error['warning'];
@@ -247,9 +284,21 @@ class ControllerTransactionTransaction extends Controller {
 		if (isset($this->request->get['sort'])) {
 			$url .= '&sort=' . $this->request->get['sort'];
 		}
+		
+		if (isset($this->request->get['filter_customer'])) {
+			$url .= '&filter_customer=' . urlencode($this->request->get['filter_customer']);
+		}
 
 		if (isset($this->request->get['order'])) {
 			$url .= '&order=' . $this->request->get['order'];
+		}
+		
+		if (isset($this->request->get['filter_date_start'])) {
+			$url .= '&filter_date_start=' . $this->request->get['filter_date_start'];
+		}
+		
+		if (isset($this->request->get['filter_date_end'])) {
+			$url .= '&filter_date_end=' . $this->request->get['filter_date_end'];
 		}
 
 		$pagination = new Pagination();
@@ -264,7 +313,10 @@ class ControllerTransactionTransaction extends Controller {
 
 		$data['sort'] = $sort;
 		$data['order'] = $order;
-
+		$data['filter_date_start'] = $filter_date_start;
+		$data['filter_date_end'] = $filter_date_end;
+		$data['filter_customer'] = $filter_customer;
+		
 		$data['header'] = $this->load->controller('common/header');
 		$data['column_left'] = $this->load->controller('common/column_left');
 		$data['footer'] = $this->load->controller('common/footer');

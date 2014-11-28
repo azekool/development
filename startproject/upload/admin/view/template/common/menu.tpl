@@ -4,7 +4,6 @@
     <ul>
 	          <li><a href="<?php echo $customer; ?>"><?php echo $text_customer; ?></a></li>
 	          <li><a href="<?php echo $customer_group; ?>"><?php echo $text_customer_group; ?></a></li>
-	          <li><a href="<?php echo $custom_field; ?>"><?php echo $text_custom_field; ?></a></li>
 	          <li><a href="<?php echo $customer_ban_ip; ?>"><?php echo $text_customer_ban_ip; ?></a></li>
 	        
 	 </ul>
@@ -21,7 +20,12 @@
         </ul>
   </li>
   <li id="invoices"><a class="parent"><i class="fa fa-file-text-o fa-fw"></i> <span><?php echo $text_invoices; ?></span></a></li>
-  <li id="reports"><a  class="parent"><i class="fa fa-bar-chart fa-fw"></i> <span><?php echo $text_reports; ?></span></a></li>
+  <li id="reports"><a  class="parent"><i class="fa fa-bar-chart fa-fw"></i> <span><?php echo $text_reports; ?></span></a>
+  	<ul>
+  	   <li><a href="<?php echo $report_customer_online; ?>"><?php echo $text_report_customer_online; ?></a></li>
+  	   <li><a href="<?php echo $report_customer_activity; ?>"><?php echo $text_report_customer_activity; ?></a></li>
+    </ul>
+  </li>
   <li id="system"><a class="parent"><i class="fa fa-cog fa-fw"></i> <span><?php echo $text_system; ?></span></a>
     <ul>
       <li><a href="<?php echo $setting; ?>"><?php echo $text_setting; ?></a></li>
@@ -38,6 +42,7 @@
    	</ul>
    </li>	
   <!--  
+  	          <li><a href="<?php echo $custom_field; ?>"><?php echo $text_custom_field; ?></a></li>
   <li id="catalog"><a class="parent"><i class="fa fa-tags fa-fw"></i> <span><?php echo $text_catalog; ?></span></a>
     <ul>
       <li><a href="<?php echo $category; ?>"><?php echo $text_category; ?></a></li>

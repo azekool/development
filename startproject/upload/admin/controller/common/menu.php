@@ -14,6 +14,9 @@ class ControllerCommonMenu extends Controller {
 		$data['text_customer_field'] = $this->language->get('text_customer_field');
 		$data['text_customer_ban_ip'] = $this->language->get('text_customer_ban_ip');
 		$data['text_custom_field'] = $this->language->get('text_custom_field');
+		$data['text_report_customer_online'] = $this->language->get('text_report_customer_online');
+		$data['text_report_customer_activity'] = $this->language->get('text_report_customer_activity');
+		
 		
 		//Product
 		$data['text_card'] = $this->language->get('text_card');
@@ -29,6 +32,8 @@ class ControllerCommonMenu extends Controller {
 		$data['text_users'] = $this->language->get('text_users');
 		$data['text_customer'] = $this->language->get('text_customer');
 		$data['text_information'] = $this->language->get('text_information');
+		$data['text_language'] = $this->language->get('text_language');
+		$data['language'] = $this->url->link('localisation/language', 'token=' . $this->session->data['token'], 'SSL');
 		
 		$data['text_system'] = $this->language->get('text_system');
 		$data['text_api'] = $this->language->get('text_api');
@@ -48,6 +53,8 @@ class ControllerCommonMenu extends Controller {
 		$data['custom_field'] = $this->url->link('sale/custom_field', 'token=' . $this->session->data['token'], 'SSL');
 		$data['transaction'] = $this->url->link('transaction/transaction', 'token=' . $this->session->data['token'], 'SSL');
 		$data['information'] = $this->url->link('catalog/information', 'token=' . $this->session->data['token'], 'SSL');
+		$data['report_customer_online'] = $this->url->link('report/customer_online', 'token=' . $this->session->data['token'], 'SSL');
+		$data['report_customer_activity'] = $this->url->link('report/customer_activity', 'token=' . $this->session->data['token'], 'SSL');
 			/*
 		$data['text_affiliate'] = $this->language->get('text_affiliate');
 		$data['text_affiliate_activity'] = $this->language->get('text_affiliate_activity');

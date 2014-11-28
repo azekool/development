@@ -33,6 +33,7 @@
           <div class="row">
           <div class="col-sm-6">
               <div class="form-group">
+              
                 <div class="input-group date">
                   <input type="text" name="filter_date_start" value="<?php echo $filter_date_start; ?>" placeholder="<?php echo $entry_date_start; ?>" data-format="YYYY-MM-DD" id="input-date-start" class="form-control" />
                   <span class="input-group-btn">

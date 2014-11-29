@@ -3,7 +3,7 @@
   <div class="page-header">
     <div class="container-fluid">
       <div class="pull-right"><a href="<?php echo $insert; ?>" data-toggle="tooltip" title="<?php echo $button_insert; ?>" class="btn btn-primary"><i class="fa fa-plus"></i></a>
-        <button type="button" data-toggle="tooltip" title="<?php echo $button_delete; ?>" class="btn btn-danger" onclick="confirm('<?php echo $text_confirm; ?>') ? $('#form-card').submit() : false;"><i class="fa fa-trash-o"></i></button>
+        <!-- <button type="button" data-toggle="tooltip" title="<?php echo $button_delete; ?>" class="btn btn-danger" onclick="confirm('<?php echo $text_confirm; ?>') ? $('#form-card').submit() : false;"><i class="fa fa-trash-o"></i></button> -->
       </div>
       <h1><?php echo $heading_title; ?></h1>
       <ul class="breadcrumb">
@@ -50,6 +50,17 @@
             </div>
             <div class="col-sm-4">
              <div class="form-group">
+              <select name="filter_customer" id="input-customer"  class="form-control">
+              
+              <option value=""><?php echo $entry_customer; ?></option>
+                <?php foreach ($customers as $customer) { ?>
+                <?php if ($customer['customer_id'] == $customer_id) { ?>
+                <option value="<?php echo $customer['customer_id']; ?>" selected="selected"><?php echo $customer['customer_name']; ?></option>
+                <?php } else { ?>
+                <option value="<?php echo $customer['customer_id']; ?>"><?php echo $customer['customer_name'];  ?></option>
+                <?php } ?>
+                <?php } ?>
+              </select>
                 <input type="text" name="filter_customer" value="<?php echo $filter_customer; ?>" id="input-customer" placeholder="<?php echo $entry_customer; ?>" class="form-control" />
               </div>
               <!-- 

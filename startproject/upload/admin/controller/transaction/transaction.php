@@ -212,10 +212,11 @@ class ControllerTransactionTransaction extends Controller {
 				'type_name'   		 => $result['type_name'],
 				'comment'			 => $result['comment'],
 				'username'			 => $result['username'],
-				'sort_order'         => $result['sort_order'],
 				'edit'               => $this->url->link('transaction/transaction/edit', 'token=' . $this->session->data['token'] . '&transaction_id=' . $result['transaction_id'] . $url, 'SSL')
 			);
 		}
+		
+		$data['customers'] = $this->model_transaction_transaction->getCustomers();
 
 		$data['heading_title'] = $this->language->get('heading_title');
 
@@ -329,10 +330,11 @@ class ControllerTransactionTransaction extends Controller {
 
 		$data['text_form'] = !isset($this->request->get['transaction_id']) ? $this->language->get('text_add') : $this->language->get('text_edit');
 
-		$data['entry_name'] = $this->language->get('entry_name');
-		$data['entry_transaction_group'] = $this->language->get('entry_transaction_group');
-		$data['entry_sort_order'] = $this->language->get('entry_sort_order');
-
+		$data['entry_customer'] = $this->language->get('entry_customer');
+		$data['entry_transaction_type'] = $this->language->get('entry_transaction_type');
+		$data['entry_amount'] = $this->language->get('entry_amount');
+		$data['entry_comment'] = $this->language->get('entry_comment');
+		
 		$data['button_save'] = $this->language->get('button_save');
 		$data['button_cancel'] = $this->language->get('button_cancel');
 
@@ -341,12 +343,25 @@ class ControllerTransactionTransaction extends Controller {
 		} else {
 			$data['error_warning'] = '';
 		}
-
-		if (isset($this->error['name'])) {
-			$data['error_name'] = $this->error['name'];
+/*
+		if (isset($this->error['customer_id'])) {
+			$data['error_customer_id'] = $this->error['customer_id'];
 		} else {
-			$data['error_name'] = array();
+			$data['error_customer_id'] = array();
 		}
+		
+		if (isset($this->error['transaction_type_id'])) {
+			$data['error_transaction_type_id'] = $this->error['transaction_type_id'];
+		} else {
+			$data['error_transaction_type_id'] = array();
+		}
+*/		
+		if (isset($this->error['amount'])) {
+			$data['error_amount'] = $this->error['amount'];
+		} else {
+			$data['error_amount'] = array();
+		}
+		
 
 		$url = '';
 
@@ -386,29 +401,41 @@ class ControllerTransactionTransaction extends Controller {
 			$transaction_info = $this->model_transaction_transaction->getTransaction($this->request->get['transaction_id']);
 		}
 
-		$this->load->model('localisation/language');
-
-		$data['languages'] = $this->model_localisation_language->getLanguages();
-
-		if (isset($this->request->post['transaction_description'])) {
-			$data['transaction_description'] = $this->request->post['transaction_description'];
-		} elseif (isset($this->request->get['transaction_id'])) {
-			$data['transaction_description'] = $this->model_transaction_transaction->getTransactionDescriptions($this->request->get['transaction_id']);
-		} else {
-			$data['transaction_description'] = array();
-		}
-
-		if (isset($this->request->post['transaction_group_id'])) {
-			$data['transaction_group_id'] = $this->request->post['transaction_group_id'];
+		
+		if (isset($this->request->post['transaction_type_id'])) {
+			$data['transaction_type_id'] = $this->request->post['transaction_type_id'];
 		} elseif (!empty($transaction_info)) {
-			$data['transaction_group_id'] = $transaction_info['transaction_group_id'];
+			$data['transaction_type_id'] = $transaction_info['transaction_type_id'];
 		} else {
-			$data['transaction_group_id'] = '';
+			$data['transaction_type_id'] = '';
 		}
-
-		$this->load->model('transaction/transaction_group');
-
-		$data['transaction_groups'] = $this->model_transaction_transaction_group->getTransactionGroups();
+		$data['transaction_types'] = $this->model_transaction_transaction->getTransactionTypes();
+		
+		if (isset($this->request->post['customer_id'])) {
+			$data['customer_id'] = $this->request->post['customer_id'];
+		} elseif (!empty($transaction_info)) {
+			$data['customer_id'] = $transaction_info['customer_id'];
+		} else {
+			$data['customer_id'] = '';
+		}
+		
+		$data['customers'] = $this->model_transaction_transaction->getCustomers();
+		
+		if (isset($this->request->post['amount'])) {
+			$data['amount'] = $this->request->post['amount'];
+		} elseif (!empty($transaction_info)) {
+			$data['amount'] = $transaction_info['amount'];
+		} else {
+			$data['amount'] = '';
+		}
+		
+		if (isset($this->request->post['comment'])) {
+			$data['comment'] = $this->request->post['comment'];
+		} elseif (!empty($transaction_info)) {
+			$data['comment'] = $transaction_info['comment'];
+		} else {
+			$data['comment'] = '';
+		}
 
 		if (isset($this->request->post['sort_order'])) {
 			$data['sort_order'] = $this->request->post['sort_order'];
@@ -429,11 +456,17 @@ class ControllerTransactionTransaction extends Controller {
 		if (!$this->user->hasPermission('modify', 'transaction/transaction')) {
 			$this->error['warning'] = $this->language->get('error_permission');
 		}
-
-		foreach ($this->request->post['transaction_description'] as $language_id => $value) {
-			if ((utf8_strlen($value['name']) < 3) || (utf8_strlen($value['name']) > 64)) {
-				$this->error['name'][$language_id] = $this->language->get('error_name');
-			}
+/*
+		if (!isset($this->request->post['customer_id']) || ((int)$this->request->post['customer_id']) <=0) {
+			$this->error['customer_id'] = $this->language->get('error_customer_id');
+		}
+		
+		if (!isset($this->request->post['transaction_type_id']) || ((int)$this->request->post['transaction_type_id']) <=0) {
+			$this->error['transaction_type_id'] = $this->language->get('error_transaction_type_id');
+		}
+*/	
+		if (!isset($this->request->post['amount']) || abs(((int)$this->request->post['amount'])) ==0) {
+			$this->error['amount'] = $this->language->get('error_amount');
 		}
 
 		return !$this->error;

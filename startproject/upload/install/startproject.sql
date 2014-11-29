@@ -808,7 +808,7 @@ CREATE TABLE IF NOT EXISTS `oc_payment` (
 --
 
 CREATE TABLE IF NOT EXISTS `oc_transaction` (
-  `transaction_id` int(10) unsigned NOT NULL AUTO_INCREMENT,
+`transaction_id` int(10) unsigned NOT NULL,
   `customer_id` int(10) unsigned DEFAULT NULL,
   `amount` decimal(15,4) NOT NULL DEFAULT '0.0000',
   `reseller_id` int(6) unsigned DEFAULT NULL,
@@ -818,10 +818,12 @@ CREATE TABLE IF NOT EXISTS `oc_transaction` (
   `user_id` int(10) NOT NULL,
   `supplier_id` int(10) DEFAULT NULL,
   `date_added` datetime DEFAULT NULL,
-  `previous_balance` decimal(15,4) NOT NULL DEFAULT '0.0000',  
-  PRIMARY KEY (`transaction_id`)
-) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=45 ;
-
+  `previous_balance` decimal(15,4) NOT NULL DEFAULT '0.0000',
+  `balance` decimal(15,4) NOT NULL,
+  `credit` decimal(15,4) NOT NULL,
+  `payment` decimal(15,4) NOT NULL,
+  `consumption` decimal(15,4) NOT NULL
+) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=4 ;
 
 
 CREATE TABLE IF NOT EXISTS `oc_transaction_type` (
